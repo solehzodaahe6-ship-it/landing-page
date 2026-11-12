@@ -252,3 +252,26 @@ section { scroll-margin-top: 80px; }
   .services, .reviews, .why, .doctor, .contact { padding: 64px 0; }
   .doctor-photo { height: 260px; font-size: 6rem; }
 }
+
+/* ===== ТУГМАҲОИ ШИНОКУНАНДА =====
+   Барои чӣ: дар поёни рост ҳамеша намоён, бо ларзиши нарм */
+.float-btns {
+  position: fixed; right: 20px; bottom: 24px; z-index: 60;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.fb {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; text-decoration: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
+  transition: transform .25s;
+}
+.fb:hover { transform: scale(1.1); }
+.fb-tg { background: #29a9eb; }
+.fb-call { background: var(--gold); animation: pulse 2.4s infinite; }
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(200, 161, 90, .6); }
+  70%  { box-shadow: 0 0 0 18px rgba(200, 161, 90, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(200, 161, 90, 0); }
+}

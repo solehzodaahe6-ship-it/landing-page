@@ -45,8 +45,12 @@
 
   <!-- ===== HERO: қисми асосӣ ===== -->
   <section class="hero" id="top">
-    <div class="container hero-inner">
-      <div class="hero-text reveal">
+<!-- Рақамҳо: data-count = рақами ниҳоӣ, data-suffix = аломат баъд аз рақам -->
+<div class="stats">
+  <div class="stat"><strong data-count="10" data-suffix="+">0</strong><span>сол таҷриба</span></div>
+  <div class="stat"><strong data-count="5000" data-suffix="+">0</strong><span>мизоҷи қаноатманд</span></div>
+  <div class="stat"><strong data-count="100" data-suffix="%">0</strong><span>стерилӣ</span></div>
+</div>
         <span class="eyebrow">Стоматологияи замонавӣ · Душанбе</span>
         <h1>Табассуми <em>комил</em> аз ин ҷо оғоз мешавад</h1>
         <p>Табобати бе дард, таҷҳизоти навтарин ва муносибати эҳтиромона. Саломатии дандонҳоро ба мутахассисон бовар кунед.</p>
@@ -136,6 +140,35 @@
     </div>
   </section>
 
+
+  <!-- ===== FAQ: саволҳои маъмул =====
+     Барои чӣ: ҷавоб ба тарсу саволҳои мизоҷон. <details> бе JS кор мекунад. -->
+<section class="faq" id="faq">
+  <div class="container faq-inner">
+    <div class="section-head reveal">
+      <span class="tag">Саволҳо</span>
+      <h2>Саволҳои маъмул</h2>
+    </div>
+
+    <details class="reveal">
+      <summary>Оё табобат дарднок аст?</summary>
+      <p>Не. Мо аз бедардкунии муосир истифода мебарем, ва шумо ҳеҷ дард ҳис намекунед.</p>
+    </details>
+    <details class="reveal">
+      <summary>Ташхис чанд пул аст?</summary>
+      <p>Ин ҷо нархи воқеиро нависед (масалан: ташхиси аввал ройгон).</p>
+    </details>
+    <details class="reveal">
+      <summary>Ба кӯдакон ҳам табобат мекунед?</summary>
+      <p>Бале, мо стоматологияи кӯдакона дорем ва бо хурдсолон меҳрубонона муносибат мекунем.</p>
+    </details>
+    <details class="reveal">
+      <summary>Кафолат медиҳед?</summary>
+      <p>Бале, ба ҳар кор кафолати хаттӣ медиҳем.</p>
+    </details>
+  </div>
+</section>
+
   <!-- ===== CONTACT: тамос ва форма барои навбат =====
        data-netlify="true" = Netlify формаро худаш мешиносад.
        name="..." дар ҳар майдон ҳатмист, вагарна маълумот намеояд. -->
@@ -174,6 +207,14 @@
   <footer class="footer">
     <div class="container">© 2026 Дурахшон · Клиникаи стоматологӣ · Душанбе</div>
   </footer>
+
+  <!-- ===== ТУГМАҲОИ ШИНОКУНАНДА =====
+     Барои чӣ: тамоси зуд бо клиника. Линкҳоро бо воқеӣ иваз кунед:
+     USERNAME = номи Telegram, рақами телефон = рақами клиника -->
+<div class="float-btns">
+  <a href="https://t.me/USERNAME" target="_blank" class="fb fb-tg" aria-label="Telegram">✈️</a>
+  <a href="tel:+992000000000" class="fb fb-call" aria-label="Занг">📞</a>
+</div>
 
   <script src="script.js"></script>
 </body>
