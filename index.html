@@ -1,66 +1,180 @@
 <!DOCTYPE html>
 <html lang="tg">
 <head>
-  <!-- ===== ТАНЗИМОТИ САҲИФА =====
-       Барои чӣ: забон, ҳарфҳо ва андозаи экран дар телефон -->
+  <!-- ===== ТАНЗИМОТИ САҲИФА ===== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дурахшон: клиникаи стоматологӣ дар Душанбе</title>
 
-  <!-- Номи сайт дар болои табаки браузер -->
-  <title>Лендинги ман</title>
+  <!-- ===== ТАВСИФ БАРОИ GOOGLE ва ПЕШНАМОИШИ ЛИНК ===== -->
+  <meta name="description" content="Клиникаи стоматологии замонавӣ дар Душанбе: табобат, имплантатсия, сафед кардани дандон. Ба қайд гиред!">
+  <meta property="og:title" content="Дурахшон: клиникаи стоматологӣ">
+  <meta property="og:description" content="Табассуми комил аз ин ҷо оғоз мешавад.">
+  <meta property="og:type" content="website">
 
-  <!-- Пайваст кардани файли намуд (style.css) -->
+  <!-- ===== ИКОНАИ САЙТ ===== -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦷</text></svg>">
+
+  <!-- ===== ШРИФТҲО (Google Fonts) =====
+       Cormorant = сарлавҳаҳои олиҷаноб, Montserrat = матни оддӣ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ===== HEADER (САР) =====
-       Барои чӣ: лого ва менюи болои сайт -->
+  <!-- ===== HEADER: лого, меню, тугмаи навбат ===== -->
   <header class="header">
-    <div class="logo">МоБренд</div>
-    <nav>
-      <a href="#services">Хизматҳо</a>
-      <a href="#contact">Тамос</a>
-    </nav>
+    <div class="container header-inner">
+      <a href="#top" class="logo">🦷 Дурахшон</a>
+
+      <nav class="nav" id="nav">
+        <a href="#services">Хизматҳо</a>
+        <a href="#why">Чаро мо</a>
+        <a href="#doctor">Духтур</a>
+        <a href="#reviews">Шарҳҳо</a>
+        <a href="#contact">Тамос</a>
+      </nav>
+
+      <a href="#contact" class="btn btn-gold header-btn">Навбат гирифтан</a>
+      <button class="burger" id="burger" aria-label="Меню">☰</button>
+    </div>
   </header>
 
-  <!-- ===== HERO (ҚИСМИ АСОСӣ) =====
-       Барои чӣ: аввалин чизе ки меҳмон мебинад: сарлавҳа ва тугма -->
-  <section class="hero">
-    <h1>Сарлавҳаи асосии шумо</h1>
-    <p>Як ҷумла: шумо чӣ медиҳед ва ба муштарӣ чӣ фоида меорад.</p>
-    <a href="#contact" class="btn">Ҳозир фармоиш диҳед</a>
-  </section>
+  <!-- ===== HERO: қисми асосӣ ===== -->
+  <section class="hero" id="top">
+    <div class="container hero-inner">
+      <div class="hero-text reveal">
+        <span class="eyebrow">Стоматологияи замонавӣ · Душанбе</span>
+        <h1>Табассуми <em>комил</em> аз ин ҷо оғоз мешавад</h1>
+        <p>Табобати бе дард, таҷҳизоти навтарин ва муносибати эҳтиромона. Саломатии дандонҳоро ба мутахассисон бовар кунед.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-gold">Навбат гирифтан</a>
+          <a href="#services" class="btn btn-outline">Хизматҳо</a>
+        </div>
 
-  <!-- ===== SERVICES (ХИЗМАТҲО) =====
-       Барои чӣ: 3 корти хизмат ё афзалият -->
-  <section id="services" class="services">
-    <h2>Хизматҳои мо</h2>
-    <div class="cards">
-      <div class="card"><h3>Хизмати 1</h3><p>Тавсифи кӯтоҳ</p></div>
-      <div class="card"><h3>Хизмати 2</h3><p>Тавсифи кӯтоҳ</p></div>
-      <div class="card"><h3>Хизмати 3</h3><p>Тавсифи кӯтоҳ</p></div>
+        <!-- Рақамҳо: бо рақамҳои воқеии клиника иваз кунед -->
+        <div class="stats">
+          <div class="stat"><strong>10+</strong><span>сол таҷриба</span></div>
+          <div class="stat"><strong>5000+</strong><span>мизоҷи қаноатманд</span></div>
+          <div class="stat"><strong>100%</strong><span>стерилӣ</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="visual-card">🦷</div>
+        <div class="badge b1">⭐ 4.9 баҳои мизоҷон</div>
+        <div class="badge b2">🕘 Ҳар рӯз 09:00–19:00</div>
+      </div>
     </div>
   </section>
 
-<!-- ===== CONTACT (ТАМОС) =====
-     Барои чӣ: форма, ки маълумотро ба Netlify мефиристад.
-     data-netlify="true" = Netlify формаро худаш мешиносад.
-     name="..." дар ҳар майдон ҳатмист, вагарна маълумот намеояд. -->
-<form id="form" name="contact" method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value="contact">
-  <input type="text" name="name" placeholder="Номи шумо" required>
-  <input type="tel" name="phone" placeholder="Рақами телефон" required>
-  <button type="submit" class="btn">Фиристодан</button>
-</form>
+  <!-- ===== SERVICES: хизматҳо (6 корт) ===== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="tag">Хизматҳо</span>
+        <h2>Ҳама чиз барои саломатии дандонҳои шумо</h2>
+      </div>
 
-  <!-- ===== FOOTER (ПОЁН) =====
-       Барои чӣ: ҳуқуқи муаллиф ва маълумоти охирин -->
+      <div class="grid">
+        <div class="card reveal"><div class="icon">🩺</div><h3>Табобати дандон</h3><p>Табобати кариес ва пулпит бо маводи сифатнок, бе дард.</p></div>
+        <div class="card reveal"><div class="icon">🔩</div><h3>Имплантатсия</h3><p>Баргардонидани дандони гумшуда бо имплантҳои аслӣ ва кафолат.</p></div>
+        <div class="card reveal"><div class="icon">✨</div><h3>Сафед кардан</h3><p>Табассуми дурахшон дар як ташриф, бе зарар ба сатҳи дандон.</p></div>
+        <div class="card reveal"><div class="icon">😁</div><h3>Ортодонтия</h3><p>Брекетҳо ва алайнерҳо барои ҷойгиршавии дурусти дандонҳо.</p></div>
+        <div class="card reveal"><div class="icon">👑</div><h3>Протез ва виниҳо</h3><p>Тоҷҳо ва виниҳои зебо, ки аз дандони табиӣ фарқ намекунанд.</p></div>
+        <div class="card reveal"><div class="icon">🧒</div><h3>Стоматологияи кӯдакон</h3><p>Муносибати меҳрубон ва муҳити ором барои хурдсолон.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY: чаро мо (фони тира) ===== -->
+  <section class="why" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="tag tag-light">Чаро мо</span>
+        <h2>Эътимод ба тафсилот</h2>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-item reveal"><b>01</b><h3>Таҷҳизоти нав</h3><p>Рентгени рақамӣ ва асбобҳои замонавӣ.</p></div>
+        <div class="why-item reveal"><b>02</b><h3>Бе дард</h3><p>Бе дард кардани сӯзандору ва ҳушдиҳандаи нарм.</p></div>
+        <div class="why-item reveal"><b>03</b><h3>Стерилӣ</h3><p>Ҳар асбоб пас аз ҳар мизоҷ тоза карда мешавад.</p></div>
+        <div class="why-item reveal"><b>04</b><h3>Кафолат</h3><p>Ба ҳар кор кафолати хаттӣ медиҳем.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DOCTOR: дар бораи духтур ===== -->
+  <section class="doctor" id="doctor">
+    <div class="container doctor-inner">
+      <div class="doctor-photo reveal">👨‍⚕️</div>
+      <div class="doctor-text reveal">
+        <span class="tag">Духтури мо</span>
+        <h2>Номи духтур</h2>
+        <p class="role">Стоматолог-ҷарроҳ · 10 сол таҷриба</p>
+        <p>Дар ин ҷо тавсифи кӯтоҳи духтур: таҳсилот, таҷриба ва ин ки чаро мизоҷон ба ӯ боварӣ доранд. Расми воқеиро баъдтар мегузорем.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS: шарҳҳои мизоҷон ===== -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="tag">Шарҳҳо</span>
+        <h2>Мизоҷон чӣ мегӯянд</h2>
+      </div>
+
+      <div class="grid">
+        <div class="review reveal"><div class="stars">★★★★★</div><p>«Хеле бодиққат ва бе дард табобат карданд. Ташаккур!»</p><b>Номи мизоҷ 1</b></div>
+        <div class="review reveal"><div class="stars">★★★★★</div><p>«Клиникаи тоза ва духтурони меҳрубон. Тавсия медиҳам.»</p><b>Номи мизоҷ 2</b></div>
+        <div class="review reveal"><div class="stars">★★★★★</div><p>«Имплантатсия бомуваффақият гузашт, натиҷа аъло.»</p><b>Номи мизоҷ 3</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT: тамос ва форма барои навбат =====
+       data-netlify="true" = Netlify формаро худаш мешиносад.
+       name="..." дар ҳар майдон ҳатмист, вагарна маълумот намеояд. -->
+  <section class="contact" id="contact">
+    <div class="container contact-inner">
+      <div class="contact-info reveal">
+        <span class="tag tag-light">Тамос</span>
+        <h2>Навбат гиред</h2>
+        <p>Рақамро гузоред, мо зуд занг мезанем ва вақти қулайро мувофиқа мекунем.</p>
+        <ul>
+          <li>📍 Душанбе, кӯчаи ... (суроғаро нависед)</li>
+          <li>📞 +992 00 000 00 00</li>
+          <li>🕘 Ҳар рӯз: 09:00–19:00</li>
+        </ul>
+      </div>
+
+      <form id="form" class="form-box reveal" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact">
+        <input type="text" name="name" placeholder="Номи шумо" required>
+        <input type="tel" name="phone" placeholder="Рақами телефон" required>
+        <select name="service">
+          <option value="">Хизматро интихоб кунед</option>
+          <option>Табобати дандон</option>
+          <option>Имплантатсия</option>
+          <option>Сафед кардан</option>
+          <option>Ортодонтия</option>
+          <option>Протез ва виниҳо</option>
+          <option>Стоматологияи кӯдакон</option>
+        </select>
+        <button type="submit" class="btn btn-gold">Фиристодан</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
-    © 2026 МоБренд
+    <div class="container">© 2026 Дурахшон · Клиникаи стоматологӣ · Душанбе</div>
   </footer>
 
-  <!-- Пайваст кардани файли ҳаракат (script.js) -->
   <script src="script.js"></script>
 </body>
 </html>

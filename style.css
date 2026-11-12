@@ -1,189 +1,242 @@
 /* ===== РАНГҲО =====
-   Барои чӣ: рангҳоро яке ҷо менависем. Агар ранг иваз кардан хоҳед,
-   танҳо инҷо иваз кунед ва тамоми сайт иваз мешавад. */
+   Барои чӣ: ҳамаи рангҳо дар як ҷо. Инҷо иваз кунед, тамоми сайт иваз мешавад. */
 :root {
-  --main: #e54646;      /* ранги асосӣ (бунафш) */
-  --main-dark: #7c3aed; /* ранги дуюм барои градиент */
-  --accent: #fbbf24;    /* ранги тугма (зард) */
-  --text: #222;         /* ранги матн */
-  --bg-light: #f5f5fa;  /* фони сабуки қисмҳо */
+  --teal: #0b3c49;     /* фирӯзаи тира (асосӣ) */
+  --teal-2: #14606f;   /* фирӯзаи миёна */
+  --mint: #e8f3f2;    /* фони сабуки қисмҳо */
+  --gold: #c8a15a;    /* тиллоӣ (тугмаҳо) */
+  --gold-d: #a9823b;  /* тиллоии тира (hover) */
+  --ink: #16282d;    /* ранги матн */
+  --muted: #5d6f73;  /* ранги матни сабуктар */
+  --bg: #fbfaf7;    /* фони саҳифа */
 }
 
-/* ===== СБРОС (ТОЗА КАРДАН) =====
-   Барои чӣ: браузер худаш фосилаҳои иловагӣ мегузорад,
-   ин қоида онҳоро тоза мекунад. */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ===== УМУМӣ (BODY) =====
-   Барои чӣ: шрифт ва ранги матн барои тамоми сайт */
+/* ===== СБРОС ва УМУМӣ ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  color: var(--text);
-  line-height: 1.6;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.65;
 }
-
-/* ===== HEADER =====
-   Барои чӣ: лого чап, меню рост, ва дар боло мемонад ҳангоми скролл */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 8%;
-  background: #fff;
-  position: sticky;
-  top: 0;
-  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  line-height: 1.15;
 }
+section { scroll-margin-top: 80px; }
+.container { width: min(1140px, 88%); margin: 0 auto; }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--main);
-}
-
-.header nav a {
-  margin-left: 24px;
-  text-decoration: none;
-  color: var(--text);
-}
-
-/* ===== HERO =====
-   Барои чӣ: қисми калони аввал бо фони рангин ва матни сафед */
-.hero {
-  text-align: center;
-  padding: 120px 8%;
-  background: linear-gradient(135deg, var(--main), var(--main-dark));
-  color: #fff;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 16px;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 32px;
-}
-
-/* ===== ТУГМА (BTN) =====
-   Барои чӣ: тугмаи зард, ки дар ҳама ҷо истифода мешавад */
+/* ===== ТУГМАҲО ===== */
 .btn {
   display: inline-block;
-  padding: 14px 32px;
-  background: var(--accent);
-  color: #000;
-  border: none;
-  border-radius: 8px;
+  padding: 14px 30px;
+  border-radius: 50px;
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: .95rem;
+  border: 2px solid transparent;
   cursor: pointer;
-  transition: transform .2s;
+  transition: transform .25s, background .25s;
+}
+.btn:hover { transform: translateY(-3px); }
+.btn-gold { background: var(--gold); color: #fff; }
+.btn-gold:hover { background: var(--gold-d); }
+.btn-outline { border-color: var(--teal); color: var(--teal); }
+
+/* ===== HEADER ===== */
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(251, 250, 247, .92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #ece8de;
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 0; gap: 20px;
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem; font-weight: 700;
+  color: var(--teal); text-decoration: none;
+}
+.nav a {
+  margin: 0 14px; text-decoration: none;
+  color: var(--ink); font-weight: 500; font-size: .92rem;
+}
+.nav a:hover { color: var(--gold-d); }
+.header-btn { padding: 10px 22px; }
+.burger {
+  display: none; background: none; border: none;
+  font-size: 1.8rem; color: var(--teal); cursor: pointer;
 }
 
-/* Ҳангоми наздик кардани муш тугма каме боло меравад */
-.btn:hover {
-  transform: translateY(-3px);
+/* ===== HERO ===== */
+.hero {
+  padding: 90px 0 100px;
+  background: radial-gradient(circle at 85% 20%, var(--mint), transparent 55%), var(--bg);
 }
-
-/* ===== SERVICES =====
-   Барои чӣ: фосила ва сарлавҳаи қисми хизматҳо */
-.services {
-  padding: 80px 8%;
-  text-align: center;
+.hero-inner {
+  display: grid; grid-template-columns: 1.1fr .9fr;
+  gap: 50px; align-items: center;
 }
-
-.services h2 {
-  font-size: 2rem;
-  margin-bottom: 40px;
+.eyebrow {
+  display: inline-block; font-size: .8rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold-d); margin-bottom: 18px;
 }
+.hero h1 { font-size: 3.6rem; color: var(--teal); margin-bottom: 20px; }
+.hero h1 em { color: var(--gold-d); font-style: italic; }
+.hero-text p { color: var(--muted); font-size: 1.05rem; max-width: 520px; margin-bottom: 32px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
 
-/* ===== КОРТҲО (CARDS) =====
-   Барои чӣ: 3 корт дар як сатр, дар экрани хурд худаш поён мефарояд */
-.cards {
+/* Рақамҳо дар зери hero */
+.stats { display: flex; gap: 36px; flex-wrap: wrap; }
+.stat strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--teal); }
+.stat span { font-size: .85rem; color: var(--muted); }
+
+/* Тасвири hero (корти калон бо дандон) */
+.hero-visual { position: relative; }
+.visual-card {
+  height: 420px; border-radius: 28px;
+  background: linear-gradient(145deg, var(--teal), var(--teal-2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9rem;
+  box-shadow: 0 30px 60px rgba(11, 60, 73, .25);
+}
+.badge {
+  position: absolute; background: #fff; padding: 12px 18px;
+  border-radius: 14px; font-size: .85rem; font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+}
+.b1 { top: 30px; left: -24px; }
+.b2 { bottom: 30px; right: -16px; }
+
+/* ===== САРЛАВҲАИ ҚИСМҲО ===== */
+.section-head { text-align: center; margin-bottom: 50px; }
+.section-head h2 { font-size: 2.6rem; color: var(--teal); }
+.tag {
+  display: inline-block; font-size: .78rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold-d); margin-bottom: 10px;
+}
+.tag-light { color: var(--gold); }
+
+/* ===== SERVICES ва REVIEWS: шабакаи кортҳо ===== */
+.services, .reviews { padding: 100px 0; }
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 26px;
+}
+.card, .review {
+  background: #fff; padding: 36px 30px; border-radius: 20px;
+  border: 1px solid #efeadd;
+  transition: transform .3s, box-shadow .3s;
+}
+.card:hover, .review:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px rgba(11, 60, 73, .12);
+}
+.icon {
+  width: 60px; height: 60px; border-radius: 16px;
+  background: var(--mint); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 1.7rem; margin-bottom: 20px;
+}
+.card h3 { font-size: 1.6rem; color: var(--teal); margin-bottom: 8px; }
+.card p, .review p { color: var(--muted); font-size: .95rem; }
+
+/* ===== WHY (фони тира) ===== */
+.why { padding: 100px 0; background: var(--teal); color: #fff; }
+.why .section-head h2 { color: #fff; }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 30px;
+}
+.why-item b {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem; color: var(--gold);
+}
+.why-item h3 { font-size: 1.5rem; margin: 6px 0; }
+.why-item p { color: #cfe0e3; font-size: .95rem; }
+
+/* ===== DOCTOR ===== */
+.doctor { padding: 100px 0; background: var(--mint); }
+.doctor-inner {
+  display: grid; grid-template-columns: .8fr 1.2fr;
+  gap: 60px; align-items: center;
+}
+.doctor-photo {
+  height: 380px; border-radius: 28px;
+  background: linear-gradient(145deg, #fff, #d3e8e6);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8rem; box-shadow: 0 24px 50px rgba(11, 60, 73, .15);
+}
+.doctor-text h2 { font-size: 2.6rem; color: var(--teal); }
+.role { color: var(--gold-d); font-weight: 600; margin: 6px 0 16px; }
+.doctor-text p { color: var(--muted); }
+
+/* ===== REVIEWS: ситора ва ном ===== */
+.stars { color: var(--gold); letter-spacing: 3px; margin-bottom: 12px; }
+.review p { font-style: italic; margin-bottom: 16px; }
+.review b { color: var(--teal); }
+
+/* ===== CONTACT ===== */
+.contact { padding: 100px 0; background: var(--teal); color: #fff; }
+.contact-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+}
+.contact-info h2 { font-size: 2.8rem; margin-bottom: 14px; }
+.contact-info p { color: #cfe0e3; margin-bottom: 24px; }
+.contact-info ul { list-style: none; }
+.contact-info li { margin-bottom: 10px; }
+
+/* Форма */
+.form-box {
+  background: #fff; padding: 36px; border-radius: 22px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.form-box input, .form-box select {
+  padding: 15px 16px; border: 1px solid #d9d9d9;
+  border-radius: 12px; font-size: 1rem; font-family: inherit;
+}
+.form-box input:focus, .form-box select:focus {
+  outline: none; border-color: var(--gold);
 }
 
-.card {
-  padding: 32px;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+/* ===== FOOTER ===== */
+.footer {
+  padding: 26px 0; text-align: center;
+  background: #072b35; color: #9fb7bc; font-size: .88rem;
 }
 
-.card h3 {
-  color: var(--main);
-  margin-bottom: 12px;
-}
+/* ===== АНИМАТСИЯ: пайдошавии нарм ҳангоми скролл ===== */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s, transform .8s; }
+.reveal.show { opacity: 1; transform: none; }
 
-/* ===== CONTACT =====
-   Барои чӣ: фони сабук ва форма дар миёна */
-.contact {
-  padding: 80px 8%;
-  text-align: center;
-  background: var(--bg-light);
-}
-
-.contact h2 {
-  font-size: 2rem;
-  margin-bottom: 32px;
-}
-
-/* ===== ФОРМА =====
-   Барои чӣ: майдонҳои вуруд ва тугма дар зери якдигар */
-#form {
-  max-width: 400px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* ===== АДАПТИВӣ: ТЕЛЕФОН =====
-   Барои чӣ: ҳамаи қоидаҳои дар ин блок навишташуда танҳо ҳангоми
-   экрани хурд (то 768px, яъне телефон) кор мекунанд.
-   Дар компютер ин қисм таъсир намекунад. */
-@media (max-width: 768px) {
-
-  /* HEADER: лого ва меню зери якдигар меоянд, зеро ҷой кам аст */
-  .header {
-    flex-direction: column;
-    gap: 10px;
-    padding: 16px 6%;
+/* ===== АДАПТИВӣ: ТЕЛЕФОН ВА ПЛАНШЕТ ===== */
+@media (max-width: 900px) {
+  /* Меню пинҳон мешавад ва бо тугмаи ☰ кушода мешавад */
+  .nav {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg); padding: 16px 6%; flex-direction: column;
+    border-bottom: 1px solid #ece8de;
   }
+  .nav.open { display: flex; }
+  .nav a { margin: 10px 0; }
+  .burger { display: block; }
+  .header-btn { display: none; }
 
-  .header nav a {
-    margin: 0 12px;
-  }
-
-  /* HERO: сарлавҳа ва фосилаи хурдтар барои экрани тангтар */
-  .hero {
-    padding: 70px 6%;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  /* SERVICES ва CONTACT: фосилаи боло ва поён камтар */
-  .services,
-  .contact {
-    padding: 50px 6%;
-  }
-
-  .services h2,
-  .contact h2 {
-    font-size: 1.6rem;
-  }
+  .hero { padding: 50px 0 70px; }
+  .hero-inner, .doctor-inner, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero h1 { font-size: 2.5rem; }
+  .visual-card { height: 280px; font-size: 6rem; }
+  .b1 { left: 0; }
+  .b2 { right: 0; }
+  .section-head h2, .doctor-text h2, .contact-info h2 { font-size: 2rem; }
+  .services, .reviews, .why, .doctor, .contact { padding: 64px 0; }
+  .doctor-photo { height: 260px; font-size: 6rem; }
 }
