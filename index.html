@@ -4,12 +4,21 @@
   <!-- ===== ТАНЗИМОТИ САҲИФА ===== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Дурахшон: клиникаи стоматологӣ дар Душанбе</title>
-  <meta name="description" content="Клиникаи стоматологии замонавӣ дар Душанбе: табобат, имплантатсия, сафед кардани дандон. Ба қайд гиред!">
-  <meta property="og:title" content="Дурахшон: клиникаи стоматологӣ">
-  <meta property="og:description" content="Табассуми комил аз ин ҷо оғоз мешавад.">
+  <meta name="theme-color" content="#06303a">
+
+  <!-- ===== НОМ ВА ТАВСИФ БАРОИ GOOGLE ва ПЕШНАМОИШИ ЛИНК ===== -->
+  <title>Солеҳзода: стоматолог дар Душанбе</title>
+  <meta name="description" content="Сӯҳроб Солеҳзода: табобати дандон бо сифат, нархи дастрас ва вақти дилхоҳ. Кафолати зиёда аз як сол.">
+  <meta property="og:title" content="Сӯҳроб Солеҳзода: стоматолог">
+  <meta property="og:description" content="Табобати бодиққат, нархи дастрас, вақти дилхоҳ.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="img/hero.jpg">
+
+  <!-- ===== ИКОНАИ САЙТ ===== -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦷</text></svg>">
+
+  <!-- ===== БОРГИРИИ ТЕЗТАРИ АКСИ АСОСӣ ===== -->
+  <link rel="preload" as="image" href="img/hero.jpg">
 
   <!-- ===== ШРИФТҲО: Cormorant = сарлавҳа, Montserrat = матн ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,21 +29,36 @@
 </head>
 <body>
 
-  <!-- ===== ХАТТИ ПЕШРАФТИ СКРОЛЛ (дар боло) ===== -->
+  <!-- ===== НИШОНАИ ДАНДОН (як бор навишта мешавад, дар ҳама ҷо истифода мешавад) ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="tooth" viewBox="0 0 24 24">
+        <path d="M12 5.5c-1.2-1-2.6-1.5-4-1.5C5.5 4 4 6 4 8.5c0 2.5 1 4 1.5 6 .5 2 .7 5.5 2.5 5.5 1.6 0 1.2-3.5 2.2-4.8.5-.6 1.1-.8 1.8-.8s1.3.2 1.8.8c1 1.3.6 4.8 2.2 4.8 1.8 0 2-3.5 2.5-5.5.5-2 1.5-3.5 1.5-6C20 6 18.5 4 16 4c-1.4 0-2.8.5-4 1.5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ===== ЭКРАНИ ОҒОЗ (preloader) ===== -->
+  <div class="preloader" id="preloader">
+    <div class="pl-logo">Солеҳзода</div>
+    <div class="pl-bar"></div>
+  </div>
+
+  <!-- ===== ХАТТИ ПЕШРАФТИ СКРОЛЛ ва НУРИ МУШ ===== -->
   <div class="progress" id="progress"></div>
+  <div class="cursor-glow" id="glow"></div>
 
   <!-- ===== HEADER: лого, меню, тугма ===== -->
   <header class="header">
     <div class="container header-inner">
       <a href="#top" class="logo">
-        <svg viewBox="0 0 24 24"><path d="M12 5.5c-1.2-1-2.6-1.5-4-1.5C5.5 4 4 6 4 8.5c0 2.5 1 4 1.5 6 .5 2 .7 5.500 2.5 5.500 1.600 0 1.200-3.500 2.200-4.800.5-.6 1.100-.8 1.800-.8s1.300.2 1.800.8c1 1.300.6 4.800 2.200 4.800 1.800 0 2-3.500 2.500-5.500.5-2 1.500-3.500 1.500-6C20 6 18.500 4 16 4c-1.400 0-2.800.5-4 1.500z"/></svg>
-        Дурахшон
+        <svg viewBox="0 0 24 24"><use href="#tooth"/></svg>
+        Солеҳзода
       </a>
       <nav class="nav" id="nav">
         <a href="#services">Хизматҳо</a>
-        <a href="#why">Чаро мо</a>
-        <a href="#clinic">Клиника</a>
-        <a href="#doctor">Духтур</a>
+        <a href="#process">Ҷараён</a>
+        <a href="#doctor">Мутахассис</a>
         <a href="#reviews">Шарҳҳо</a>
         <a href="#contact">Тамос</a>
       </nav>
@@ -50,7 +74,7 @@
 
     <div class="container hero-inner">
       <div class="hero-text">
-        <span class="eyebrow anim" style="animation-delay:.2s">Стоматологияи замонавӣ · Душанбе</span>
+        <span class="eyebrow anim" style="animation-delay:.2s">Стоматолог · Душанбе</span>
 
         <!-- Ҳар сатри сарлавҳа алоҳида боло меояд -->
         <h1>
@@ -59,29 +83,35 @@
           <span class="line"><span>оғоз мешавад</span></span>
         </h1>
 
-        <p class="anim" style="animation-delay:.9s">Табобати бе дард, таҷҳизоти навтарин ва муносибати эҳтиромона. Саломатии дандонҳоро ба мутахассисон бовар кунед.</p>
+        <p class="anim" style="animation-delay:.9s">Табобати бодиққат ва бо сифат, нархи дастрас ва вақти дилхоҳ. Ба ҳар кор зиёда аз як сол кафолат медиҳем.</p>
 
         <div class="hero-actions anim" style="animation-delay:1.1s">
-          <a href="#contact" class="btn btn-gold">Навбат гирифтан</a>
-          <a href="#services" class="btn btn-outline">Хизматҳо</a>
+          <a href="#contact" class="btn btn-gold magnetic">Навбат гирифтан</a>
+          <a href="tel:+992000018802" class="btn btn-outline magnetic">Занг задан</a>
         </div>
 
-        <!-- Рақамҳо: бо рақамҳои воқеии клиника иваз кунед -->
-        <div class="stats anim" style="animation-delay:1.3s">
-          <div class="stat"><strong data-count="10" data-suffix="+">0</strong><span>сол таҷриба</span></div>
-          <div class="stat"><strong data-count="5000" data-suffix="+">0</strong><span>мизоҷи қаноатманд</span></div>
-          <div class="stat"><strong data-count="100" data-suffix="%">0</strong><span>стерилӣ</span></div>
+        <!-- Нишони боварӣ: таҳсили воқеӣ -->
+        <div class="chip anim" style="animation-delay:1.25s">
+          <svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>
+          Донишгоҳи тиббии ба номи Абӯалӣ ибни Сино
+        </div>
+
+        <!-- Рақамҳо: танҳо он чи воқеан дуруст аст -->
+        <div class="stats anim" style="animation-delay:1.4s">
+          <div class="stat"><strong data-count="1" data-suffix="+">0</strong><span>сол кафолат</span></div>
+          <div class="stat"><strong>Дилхоҳ</strong><span>вақти қабул</span></div>
+          <div class="stat"><strong>Дастрас</strong><span>нархҳо</span></div>
         </div>
       </div>
 
       <!-- Тасвири hero: камон + дандони кашидашаванда + акс -->
       <div class="hero-visual anim" style="animation-delay:.5s">
         <div class="arch">
-          <svg class="big-tooth" viewBox="0 0 24 24"><path pathLength="1" d="M12 5.5c-1.2-1-2.6-1.5-4-1.5C5.5 4 4 6 4 8.5c0 2.5 1 4 1.5 6 .5 2 .7 5.500 2.5 5.500 1.600 0 1.200-3.500 2.200-4.800.5-.6 1.100-.8 1.800-.8s1.300.2 1.800.8c1 1.300.6 4.800 2.200 4.800 1.800 0 2-3.500 2.500-5.500.5-2 1.500-3.500 1.500-6C20 6 18.500 4 16 4c-1.400 0-2.800.5-4 1.500z"/></svg>
+          <svg class="big-tooth" viewBox="0 0 24 24"><path pathLength="1" d="M12 5.5c-1.2-1-2.6-1.5-4-1.5C5.5 4 4 6 4 8.5c0 2.5 1 4 1.5 6 .5 2 .7 5.5 2.5 5.5 1.6 0 1.2-3.5 2.2-4.8.5-.6 1.1-.8 1.8-.8s1.3.2 1.8.8c1 1.3.6 4.8 2.2 4.8 1.8 0 2-3.5 2.5-5.5.5-2 1.5-3.5 1.5-6C20 6 18.5 4 16 4c-1.4 0-2.8.5-4 1.5z"/></svg>
           <div class="photo" style="background-image:url('img/hero.jpg')"></div>
         </div>
-        <div class="glass g1"><b>4.9 ★</b> баҳои мизоҷон</div>
-        <div class="glass g2"><b>09:00–19:00</b> ҳар рӯз</div>
+        <div class="glass g1"><b>1+ сол</b> кафолат ба ҳар кор</div>
+        <div class="glass g2"><b>Вақти дилхоҳ</b> худатон интихоб мекунед</div>
       </div>
     </div>
   </section>
@@ -94,7 +124,7 @@
     </div>
   </div>
 
-  <!-- ===== SERVICES: 6 корти хизмат бо иконаи SVG ===== -->
+  <!-- ===== SERVICES: 6 корти хизмат ===== -->
   <section class="services" id="services">
     <div class="container">
       <div class="section-head reveal">
@@ -105,34 +135,94 @@
       <div class="grid">
         <div class="card reveal">
           <span class="num">01</span>
-          <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 5.5c-1.2-1-2.6-1.5-4-1.5C5.5 4 4 6 4 8.5c0 2.5 1 4 1.5 6 .5 2 .7 5.500 2.5 5.500 1.600 0 1.200-3.500 2.200-4.800.5-.6 1.100-.8 1.800-.8s1.300.2 1.800.8c1 1.300.6 4.800 2.200 4.800 1.800 0 2-3.500 2.500-5.500.5-2 1.500-3.500 1.500-6C20 6 18.500 4 16 4c-1.400 0-2.800.5-4 1.500z"/></svg></div>
-          <h3>Табобати дандон</h3><p>Табобати кариес ва пулпит бо маводи сифатнок, бе дард.</p>
+          <div class="icon"><svg viewBox="0 0 24 24"><use href="#tooth"/></svg></div>
+          <h3>Табобати дандон</h3><p>Табобати кариес ва пулпит бо маводи сифатнок ва бодиққат.</p>
         </div>
         <div class="card reveal">
           <span class="num">02</span>
-          <div class="icon"><svg viewBox="0 0 24 24"><path d="M7 3h10v5H7z"/><path d="M8.500 8v3l3.500 1.500 3.500-1.500V8"/><path d="M10 14.500h4M10.500 17.500h3M11 20.500h2"/></svg></div>
-          <h3>Имплантатсия</h3><p>Баргардонидани дандони гумшуда бо имплантҳои аслӣ ва кафолат.</p>
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M7 3h10v5H7z"/><path d="M8.5 8v3l3.5 1.5 3.5-1.5V8"/><path d="M10 14.5h4M10.5 17.5h3M11 20.5h2"/></svg></div>
+          <h3>Имплантатсия</h3><p>Баргардонидани дандони гумшуда бо имплант ва кафолат.</p>
         </div>
         <div class="card reveal">
           <span class="num">03</span>
-          <div class="icon"><svg viewBox="0 0 24 24"><path d="M11 3l1.800 6.200L19 11l-6.200 1.800L11 19l-1.800-6.200L3 11l6.200-1.800z"/><path d="M19 3v4M17 5h4M19 17v4M17 19h4"/></svg></div>
-          <h3>Сафед кардан</h3><p>Табассуми дурахшон дар як ташриф, бе зарар ба сатҳи дандон.</p>
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M11 3l1.8 6.2L19 11l-6.2 1.8L11 19l-1.8-6.2L3 11l6.2-1.8z"/><path d="M19 3v4M17 5h4M19 17v4M17 19h4"/></svg></div>
+          <h3>Сафед кардан</h3><p>Табассуми дурахшон бо усули эҳтиёткорона барои сатҳи дандон.</p>
         </div>
         <div class="card reveal">
           <span class="num">04</span>
-          <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 12h18"/><rect x="4" y="8.500" width="4" height="7" rx="1.200"/><rect x="10" y="8.500" width="4" height="7" rx="1.200"/><rect x="16" y="8.500" width="4" height="7" rx="1.200"/></svg></div>
-          <h3>Ортодонтия</h3><p>Брекетҳо ва алайнерҳо барои ҷойгиршавии дурусти дандонҳо.</p>
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 12h18"/><rect x="4" y="8.5" width="4" height="7" rx="1.2"/><rect x="10" y="8.5" width="4" height="7" rx="1.2"/><rect x="16" y="8.5" width="4" height="7" rx="1.2"/></svg></div>
+          <h3>Ортодонтия</h3><p>Брекетҳо барои ҷойгиршавии дурусти дандонҳо.</p>
         </div>
         <div class="card reveal">
           <span class="num">05</span>
-          <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 19h16M5 19L4 8l4.500 3.500L12 5l3.500 6.500L20 8l-1 11"/></svg></div>
-          <h3>Протез ва виниҳо</h3><p>Тоҷҳо ва виниҳои зебо, ки аз дандони табиӣ фарқ намекунанд.</p>
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 19h16M5 19L4 8l4.5 3.5L12 5l3.5 6.5L20 8l-1 11"/></svg></div>
+          <h3>Протез ва виниҳо</h3><p>Тоҷҳо ва виниҳои зебо, ки аз дандони табиӣ кам фарқ мекунанд.</p>
         </div>
         <div class="card reveal">
           <span class="num">06</span>
-          <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 2 2.500 3 4 3s3-1 4-3M9 9.500h.01M15 9.500h.01"/></svg></div>
+          <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 2 2.5 3 4 3s3-1 4-3M9 9.5h.01M15 9.5h.01"/></svg></div>
           <h3>Стоматологияи кӯдакон</h3><p>Муносибати меҳрубон ва муҳити ором барои хурдсолон.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SMILE: слайдери «Пеш / Баъд» (бе акс, бо SVG) =====
+       Барои чӣ: нишон додани натиҷаи сафед кардан ба таври зинда.
+       <input type="range"> дар болои расм ҳаракати муш/ангуштро мегирад. -->
+  <section class="smile" id="smile">
+    <div class="container smile-inner">
+      <div class="smile-text reveal">
+        <span class="tag">Натиҷа</span>
+        <h2>Табассуме, ки <em>фарқ мекунад</em></h2>
+        <p>Рангу тозагии дандон ба эътимоди шумо бевосита таъсир мекунад. Слайдерро кашед ва тафовутро бинед.</p>
+        <ul class="creds">
+          <li>Ташхиси бодиққат пеш аз ҳар табобат</li>
+          <li>Маводи сифатнок</li>
+          <li>Нақшаи табобат: нарх ва вақтро пешакӣ мефаҳмонем</li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <div class="ba" id="ba">
+          <!-- Қабати «Пеш»: дандонҳои зардтоб -->
+          <svg class="ba-layer ba-before" viewBox="0 0 120 70">
+            <use href="#tooth" x="0" y="23" width="24" height="24"/>
+            <use href="#tooth" x="24" y="23" width="24" height="24"/>
+            <use href="#tooth" x="48" y="23" width="24" height="24"/>
+            <use href="#tooth" x="72" y="23" width="24" height="24"/>
+            <use href="#tooth" x="96" y="23" width="24" height="24"/>
+          </svg>
+          <!-- Қабати «Баъд»: дандонҳои сафед (бо clip-path бурида мешавад) -->
+          <svg class="ba-layer ba-after" viewBox="0 0 120 70">
+            <use href="#tooth" x="0" y="23" width="24" height="24"/>
+            <use href="#tooth" x="24" y="23" width="24" height="24"/>
+            <use href="#tooth" x="48" y="23" width="24" height="24"/>
+            <use href="#tooth" x="72" y="23" width="24" height="24"/>
+            <use href="#tooth" x="96" y="23" width="24" height="24"/>
+          </svg>
+          <span class="ba-tag ba-l">Пеш</span>
+          <span class="ba-tag ba-r">Баъд</span>
+          <div class="ba-handle"></div>
+          <input type="range" id="baRange" min="0" max="100" value="50" aria-label="Пеш ва баъд">
+        </div>
+        <p class="ba-note">Тасвири намунавӣ: тафовути рангро нишон медиҳад.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS: 4 қадами кор ===== -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="tag">Ҷараён</span>
+        <h2>Чӣ тавр <em>кор мекунем</em></h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="dot">1</div><h3>Занг ё паём</h3><p>Рақамро гузоред ё занг занед. Вақти қулайро худатон интихоб мекунед.</p></div>
+        <div class="step reveal"><div class="dot">2</div><h3>Ташхис</h3><p>Дандонҳоро бодиққат менигарем ва нақшаи табобатро шарҳ медиҳем.</p></div>
+        <div class="step reveal"><div class="dot">3</div><h3>Табобат</h3><p>Бо маводи сифатнок ва бодиққат кор мекунем.</p></div>
+        <div class="step reveal"><div class="dot">4</div><h3>Кафолат</h3><p>Ба кор зиёда аз як сол кафолат медиҳем.</p></div>
       </div>
     </div>
   </section>
@@ -142,53 +232,54 @@
     <div class="container">
       <div class="section-head reveal">
         <span class="tag tag-light">Чаро мо</span>
-        <h2>Эътимод ба <em>тафсилот</em></h2>
+        <h2>Чаро мизоҷон <em>бармегарданд</em></h2>
       </div>
       <div class="why-grid">
-        <div class="why-item reveal"><b>01</b><h3>Таҷҳизоти нав</h3><p>Рентгени рақамӣ ва асбобҳои замонавӣ.</p></div>
-        <div class="why-item reveal"><b>02</b><h3>Бе дард</h3><p>Бедардкунии муосир ва муносибати нарм.</p></div>
-        <div class="why-item reveal"><b>03</b><h3>Стерилӣ</h3><p>Ҳар асбоб пас аз ҳар мизоҷ тоза карда мешавад.</p></div>
-        <div class="why-item reveal"><b>04</b><h3>Кафолат</h3><p>Ба ҳар кор кафолати хаттӣ медиҳем.</p></div>
+        <div class="why-item reveal"><b>01</b><h3>Сифат</h3><p>Корҳо бодиққат ва бо сифати баланд анҷом дода мешаванд.</p></div>
+        <div class="why-item reveal"><b>02</b><h3>Нархи дастрас</h3><p>Табобати хуб набояд гарон бошад.</p></div>
+        <div class="why-item reveal"><b>03</b><h3>Вақти дилхоҳ</h3><p>Вақти қабулро худатон интихоб мекунед.</p></div>
+        <div class="why-item reveal"><b>04</b><h3>Кафолат</h3><p>Ба ҳар кор зиёда аз як сол кафолат.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== CLINIC: галереяи клиника (аксҳо дар папкаи img) ===== -->
+  <!-- ===== CLINIC: галерея (аксҳо дар папкаи img) ===== -->
   <section class="clinic" id="clinic">
     <div class="container">
       <div class="section-head reveal">
-        <span class="tag">Клиникаи мо</span>
-        <h2>Муҳити <em>ором ва тоза</em></h2>
+        <span class="tag">Дар кор</span>
+        <h2>Муҳит ва <em>таҷҳизот</em></h2>
       </div>
       <div class="gallery">
         <div class="tile reveal"><div class="photo" style="background-image:url('img/clinic1.jpg')"></div><span>Кабинети табобат</span></div>
-        <div class="tile reveal"><div class="photo" style="background-image:url('img/clinic2.jpg')"></div><span>Меҳмонхона</span></div>
-        <div class="tile reveal"><div class="photo" style="background-image:url('img/clinic3.jpg')"></div><span>Таҷҳизот</span></div>
+        <div class="tile reveal"><div class="photo" style="background-image:url('img/clinic2.jpg')"></div><span>Қабулгоҳ</span></div>
+        <div class="tile reveal"><div class="photo" style="background-image:url('img/clinic3.jpg')"></div><span>Дар вақти табобат</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== DOCTOR: дар бораи духтур ===== -->
+  <!-- ===== DOCTOR: дар бораи Сӯҳроб ===== -->
   <section class="doctor" id="doctor">
     <div class="container doctor-inner">
       <div class="doctor-photo reveal">
         <div class="photo" style="background-image:url('img/doctor.jpg')"></div>
       </div>
       <div class="doctor-text reveal">
-        <span class="tag">Духтури мо</span>
-        <h2>Номи духтур</h2>
-        <p class="role">Стоматолог-ҷарроҳ · 10 сол таҷриба</p>
-        <p>Дар ин ҷо тавсифи кӯтоҳи духтур: таҳсилот, таҷриба ва ин ки чаро мизоҷон ба ӯ боварӣ доранд.</p>
+        <span class="tag">Мутахассиси мо</span>
+        <h2>Сӯҳроб Солеҳзода</h2>
+        <p class="role">Донишҷӯи курси 3 · Стоматология</p>
+        <p>Сӯҳроб мутахассиси босавод ва хушмуомила аст. Корҳояш бодиққат ва бо сифат анҷом дода мешаванд, нархҳо дастрасанд ва вақти қабулро худи мизоҷ интихоб мекунад.</p>
         <ul class="creds">
-          <li>Донишгоҳи тиббии ... (соли ...)</li>
-          <li>Курсҳои такмили ихтисос дар ...</li>
-          <li>Зиёда аз 1000 имплант ва табобат</li>
+          <li>Донишгоҳи тиббии ба номи Абӯалӣ ибни Сино, ихтисоси стоматология</li>
+          <li>Ба ҳар кор зиёда аз як сол кафолат</li>
+          <li>Нархи дастрас ва вақти дилхоҳ</li>
         </ul>
+        <a href="tel:+992000018802" class="btn btn-gold">Занг задан</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== REVIEWS: шарҳҳои мизоҷон ===== -->
+  <!-- ===== REVIEWS: танҳо шарҳҳои воқеӣ ва бо розигии мизоҷон ===== -->
   <section class="reviews" id="reviews">
     <div class="container">
       <div class="section-head reveal">
@@ -196,9 +287,9 @@
         <h2>Мизоҷон <em>чӣ мегӯянд</em></h2>
       </div>
       <div class="grid">
-        <div class="review reveal"><div class="stars">★★★★★</div><p>Хеле бодиққат ва бе дард табобат карданд. Ташаккур!</p><b>Номи мизоҷ 1</b></div>
-        <div class="review reveal"><div class="stars">★★★★★</div><p>Клиникаи тоза ва духтурони меҳрубон. Тавсия медиҳам.</p><b>Номи мизоҷ 2</b></div>
-        <div class="review reveal"><div class="stars">★★★★★</div><p>Имплантатсия бомуваффақият гузашт, натиҷа аъло.</p><b>Номи мизоҷ 3</b></div>
+        <div class="review reveal"><div class="stars">★★★★★</div><p>Беҳтарин духтур! Дандонҳоямро ба ӯ бовар мекунам. Ба шумо ҳам тавсия медиҳам.</p><b>Абӯбакр</b></div>
+        <div class="review reveal"><div class="stars">★★★★★</div><p>Назди Сӯҳроб омада имплантатсия кардам ва ҳоло ба ӯ ташаккур мегӯям. Беҳтарин духтур аст, ба шумо ҳам тавсия медиҳам.</p><b>Карим</b></div>
+        <div class="review reveal"><div class="stars">★★★★★</div><p>Беҳтарин дандонпизишке, ки то ҳол дидаам. Корҳояш бо сифат, нархаш дастрас ва аз ҳама муҳим: вақти дилхоҳ.</p><b>Шаҳоб</b></div>
       </div>
     </div>
   </section>
@@ -210,56 +301,90 @@
         <span class="tag">Саволҳо</span>
         <h2>Саволҳои <em>маъмул</em></h2>
       </div>
-      <details class="reveal"><summary>Оё табобат дарднок аст?</summary><p>Не. Мо аз бедардкунии муосир истифода мебарем ва шумо дард ҳис намекунед.</p></details>
-      <details class="reveal"><summary>Ташхис чанд пул аст?</summary><p>Ин ҷо нархи воқеиро нависед (масалан: ташхиси аввал ройгон).</p></details>
-      <details class="reveal"><summary>Ба кӯдакон ҳам табобат мекунед?</summary><p>Бале, мо стоматологияи кӯдакона дорем ва бо хурдсолон меҳрубонона муносибат мекунем.</p></details>
-      <details class="reveal"><summary>Кафолат медиҳед?</summary><p>Бале, ба ҳар кор кафолати хаттӣ медиҳем.</p></details>
+      <details class="reveal"><summary>Табобат чӣ тавр мегузарад?</summary><p>Кӯшиш мекунем, ки табобат бо бедардкунӣ ва бодиққат гузарад. Дар ҳар марҳила ба шумо мефаҳмонем, ки чӣ мешавад.</p></details>
+      <details class="reveal"><summary>Нарх чанд пул аст?</summary><p>Нарх аз навъи табобат вобаста аст. Барои нархи аниқ занг занед ё дар форма нависед. Нархҳои мо дастрасанд.</p></details>
+      <details class="reveal"><summary>Кай омада метавонам?</summary><p>Вақтро худатон интихоб мекунед. Дар форма санаю соатро нависед ё занг занед.</p></details>
+      <details class="reveal"><summary>Кафолат медиҳед?</summary><p>Бале, ба ҳар кор зиёда аз як сол кафолат медиҳем.</p></details>
     </div>
   </section>
 
   <!-- ===== CONTACT: тамос ва форма (Netlify Forms) =====
        data-netlify="true" = Netlify формаро худаш мешиносад.
-       name="..." дар ҳар майдон ҳатмист. -->
+       name="..." дар ҳар майдон ҳатмист.
+       bot-field = майдони пинҳонӣ барои муҳофизат аз спам. -->
   <section class="contact" id="contact">
     <div class="container contact-inner">
       <div class="contact-info reveal">
         <span class="tag tag-light">Тамос</span>
         <h2>Навбат <em>гиред</em></h2>
-        <p>Рақамро гузоред, мо зуд занг мезанем ва вақти қулайро мувофиқа мекунем.</p>
+        <p>Хизмат ва вақти қулайро интихоб кунед, мо зуд занг мезанем.</p>
         <ul>
-          <li>Душанбе, кӯчаи ... (суроғаро нависед)</li>
-          <li>+992 00 000 00 00</li>
-          <li>Ҳар рӯз: 09:00–19:00</li>
+          <li><a href="tel:+992000018802">+992 000 018 802</a></li>
+          <li>Вақт: ҳар вақти дилхоҳи шумо</li>
+          <li>Душанбе (суроғаро ҳангоми занг мефаҳмонем)</li>
         </ul>
       </div>
 
-      <form id="form" class="form-box reveal" name="contact" method="POST" data-netlify="true">
+      <form id="form" class="form-box reveal" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
-        <input type="text" name="name" placeholder="Номи шумо" required>
-        <input type="tel" name="phone" placeholder="Рақами телефон" required>
-        <select name="service">
-          <option value="">Хизматро интихоб кунед</option>
-          <option>Табобати дандон</option>
-          <option>Имплантатсия</option>
-          <option>Сафед кардан</option>
-          <option>Ортодонтия</option>
-          <option>Протез ва виниҳо</option>
-          <option>Стоматологияи кӯдакон</option>
-        </select>
-        <button type="submit" class="btn btn-gold">Фиристодан</button>
+        <p class="hp"><label>Нагузоред: <input name="bot-field"></label></p>
+
+        <div class="fields">
+          <span class="lbl">Хизматро интихоб кунед</span>
+          <div class="chips">
+            <label><input type="radio" name="service" value="Табобати дандон"><span>Табобат</span></label>
+            <label><input type="radio" name="service" value="Имплантатсия"><span>Имплантатсия</span></label>
+            <label><input type="radio" name="service" value="Сафед кардан"><span>Сафед кардан</span></label>
+            <label><input type="radio" name="service" value="Ортодонтия"><span>Ортодонтия</span></label>
+            <label><input type="radio" name="service" value="Протез ва виниҳо"><span>Виниҳо</span></label>
+            <label><input type="radio" name="service" value="Стоматологияи кӯдакон"><span>Кӯдакон</span></label>
+          </div>
+
+          <input type="text" name="name" placeholder="Номи шумо" required>
+          <input type="tel" name="phone" placeholder="Рақами телефон" required>
+
+          <span class="lbl">Вақти дилхоҳ</span>
+          <div class="row2">
+            <input type="date" name="date" aria-label="Сана">
+            <input type="time" name="time" aria-label="Соат">
+          </div>
+
+          <button type="submit" class="btn btn-gold">Фиристодан</button>
+        </div>
+
+        <!-- Паёми муваффақият (пас аз фиристодан намоён мешавад) -->
+        <div class="form-ok" id="formOk" hidden>
+          <div class="ok-icon">✓</div>
+          <h3>Ташаккур!</h3>
+          <p>Дархости шумо қабул шуд. Мо ба наздикӣ занг мезанем.</p>
+        </div>
       </form>
     </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
-    <div class="container">© 2026 Дурахшон · Клиникаи стоматологӣ · Душанбе</div>
+    <div class="container">© 2026 Сӯҳроб Солеҳзода · Стоматолог · Душанбе</div>
   </footer>
 
-  <!-- ===== ТУГМАҲОИ ШИНОКУНАНДА: линкҳоро бо воқеӣ иваз кунед ===== -->
+  <!-- ===== ТУГМАҲОИ ШИНОКУНАНДА (компьютер): WhatsApp, Telegram, занг =====
+       Барои чӣ: тамоси зуд. Агар username-и Telegram дошта бошед, линкро иваз кунед. -->
   <div class="float-btns">
-    <a href="https://t.me/USERNAME" target="_blank" class="fb fb-tg" aria-label="Telegram">✈</a>
-    <a href="tel:+992000000000" class="fb fb-call" aria-label="Занг">☎</a>
+    <a href="https://wa.me/992000018802" target="_blank" class="fb fb-wa" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M3 21l1.6-4.9A8.5 8.5 0 1 1 8.2 19.5L3 21z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a3.5 3.5 0 0 1-1.8-1.8l.8-1-1-2L9 9.5z"/></svg>
+    </a>
+    <a href="https://t.me/+992000018802" target="_blank" class="fb fb-tg" aria-label="Telegram">
+      <svg viewBox="0 0 24 24"><path d="M21 3L3 10.5l6 2.5 2.5 6L21 3z"/><path d="M9 13l12-10"/></svg>
+    </a>
+    <a href="tel:+992000018802" class="fb fb-call" aria-label="Занг">
+      <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+    </a>
+  </div>
+
+  <!-- ===== НАВОРИ ПОЁНӢ (телефон) ===== -->
+  <div class="mobile-bar">
+    <a href="tel:+992000018802" class="mb-call">Занг задан</a>
+    <a href="#contact" class="mb-book">Навбат гирифтан</a>
   </div>
 
   <script src="script.js"></script>
