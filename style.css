@@ -91,7 +91,7 @@ a { color: inherit; }
 .burger { display: none; background: none; border: none; font-size: 1.8rem; color: var(--teal); cursor: pointer; }
 
 /* ===== HERO ===== */
-.hero { position: relative; padding: 80px 0 110px; overflow: hidden; }
+.hero { position: relative; padding: 80px 0 90px; overflow: hidden; }
 .hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1.1fr .9fr; gap: 70px; align-items: center; }
 
 /* Шаклҳои оби ҳаракаткунанда дар қафо */
@@ -116,17 +116,21 @@ a { color: inherit; }
 @keyframes fadeUp { to { opacity: 1; transform: none; } }
 
 .hero-text p { color: var(--muted); font-size: 1.05rem; max-width: 500px; margin-bottom: 32px; }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 30px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-/* Нишони боварӣ */
+/* Навори зери hero: нишони донишгоҳ + рақамҳо */
+.hero-foot {
+  position: relative; z-index: 2; margin-top: 56px; padding-top: 30px;
+  border-top: 1px solid #e3dccb;
+  display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+}
 .chip {
-  display: inline-flex; align-items: center; gap: 10px; margin-bottom: 38px;
+  display: inline-flex; align-items: center; gap: 10px;
   padding: 10px 18px; border-radius: 40px; font-size: .82rem; font-weight: 500;
   background: #fff; border: 1px solid #eadfc4; color: var(--teal);
 }
 .chip svg { width: 20px; height: 20px; flex: none; fill: none; stroke: var(--gold-d); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-
-.stats { display: flex; gap: 40px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid #e3dccb; }
+.stats { display: flex; gap: 44px; flex-wrap: wrap; }
 .stat strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--teal); line-height: 1.15; }
 .stat span { font-size: .82rem; color: var(--muted); }
 
@@ -356,9 +360,6 @@ details p { margin-top: 14px; color: var(--muted); }
 .fb-call { background: var(--gold); animation: pulse 2.4s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(201,164,92,.6); } 70% { box-shadow: 0 0 0 18px rgba(201,164,92,0); } 100% { box-shadow: 0 0 0 0 rgba(201,164,92,0); } }
 
-/* ===== НАВОРИ ПОЁНӢ (танҳо дар телефон) ===== */
-.mobile-bar { display: none; }
-
 /* ===== ПАЙДОШАВИИ НАРМ ҲАНГОМИ СКРОЛЛ =====
    animation = пуштибон: агар JS кор накунад, худаш пас аз 1.8 сония намоён мешавад */
 .reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s ease, transform .9s ease; animation: revealFallback .8s ease 1.8s forwards; }
@@ -379,40 +380,122 @@ details p { margin-top: 14px; color: var(--muted); }
   .steps::before { display: none; }
 }
 
-/* ===== АДАПТИВӣ: ТЕЛЕФОН ===== */
+/* ===== АДАПТИВӣ: ТЕЛЕФОН =====
+   Принсип: ҳама чиз фишурдатар, hero ду сутун мемонад (мисли компютер) */
 @media (max-width: 900px) {
+
+  /* --- Меню --- */
   .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg); padding: 16px 6%; border-bottom: 1px solid #ece6d6; }
   .nav.open { display: flex; }
   .nav a { margin: 10px 0; }
   .burger { display: block; }
   .header-btn { display: none; }
+  .header-inner { padding: 10px 0; }
+  .logo { font-size: 1.5rem; }
+  .logo svg { width: 26px; height: 26px; }
 
-  .hero { padding: 50px 0 80px; }
-  .hero-inner, .doctor-inner, .contact-inner, .smile-inner { grid-template-columns: 1fr; gap: 50px; }
-  .arch { height: 440px; }
-  .hero-visual::before { inset: 18px -12px -18px 12px; }
-  .g1 { left: 0; }
-  .g2 { right: 0; }
-  .gallery { grid-template-columns: 1fr; }
-  .tile { height: 300px; }
-  .doctor-photo { height: 400px; }
-  .services, .reviews, .why, .clinic, .doctor, .faq, .contact, .smile, .process { padding: 72px 0; }
-  .form-box { padding: 28px; }
+  /* --- Сарлавҳаи қисмҳо ва фосилаҳо --- */
+  .services, .reviews, .why, .clinic, .doctor, .faq, .contact, .smile, .process { padding: 56px 0; }
+  .section-head { margin-bottom: 30px; }
+  .section-head h2, .smile-text h2 { font-size: 1.9rem; }
 
-  /* Дар телефон тугмаҳои шинокунанда пинҳон, навори поёнӣ намоён */
-  .float-btns { display: none; }
-  .mobile-bar {
-    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
-    padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); gap: 10px;
-    background: rgba(250,248,243,.95); backdrop-filter: blur(12px); border-top: 1px solid #ece6d6;
-  }
-  .mobile-bar a { flex: 1; text-align: center; padding: 14px; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: .95rem; }
-  .mb-call { border: 2px solid var(--teal); color: var(--teal); }
-  .mb-book { background: var(--gold); color: #fff; }
-  body { padding-bottom: 76px; }
+  /* --- HERO: ду сутун (матн чап, акс рост) --- */
+  .hero { padding: 26px 0 40px; }
+  .hero-inner { grid-template-columns: 1.2fr .8fr; gap: 14px; align-items: center; }
+  .eyebrow { font-size: .58rem; letter-spacing: .1em; margin-bottom: 12px; }
+  .hero h1 { font-size: clamp(1.55rem, 6.6vw, 2.3rem); margin-bottom: 14px; }
+  .hero-text p { font-size: .8rem; line-height: 1.55; margin-bottom: 16px; }
+  .hero-actions { flex-direction: column; gap: 8px; }
+  .hero-actions .btn { padding: 11px 12px; font-size: .78rem; text-align: center; }
+
+  .arch { height: 270px; border-radius: 120px 120px 18px 18px; }
+  .hero-visual::before { inset: 10px -8px -10px 8px; border-radius: 120px 120px 18px 18px; }
+  .glass { display: none; }
+
+  /* --- Навори зери hero --- */
+  .hero-foot { margin-top: 26px; padding-top: 18px; gap: 14px; }
+  .chip { width: 100%; font-size: .72rem; padding: 8px 14px; }
+  .stats { width: 100%; justify-content: space-between; gap: 10px; }
+  .stat strong { font-size: 1.45rem; }
+  .stat span { font-size: .68rem; }
+
+  /* --- Навори ҳаракаткунанда --- */
+  .marquee { padding: 14px 0; }
+  .track span { font-size: 1.2rem; padding: 0 20px; }
+  .track span::after { margin-left: 40px; }
+
+  /* --- Хизматҳо: 2 сутун, кортҳои хурд --- */
+  .grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .card { padding: 22px 16px; border-radius: 18px; }
+  .num { top: 12px; right: 14px; font-size: 1rem; }
+  .icon { width: 46px; height: 46px; border-radius: 14px; margin-bottom: 14px; }
+  .icon svg { width: 22px; height: 22px; }
+  .card h3 { font-size: 1.2rem; margin-bottom: 6px; }
+  .card p { font-size: .78rem; line-height: 1.5; }
+
+  /* --- Пеш / Баъд --- */
+  .smile-inner, .contact-inner { grid-template-columns: 1fr; gap: 30px; }
+  .ba { border-radius: 20px; }
+  .ba-tag { top: 10px; padding: 4px 12px; font-size: .68rem; }
+  .ba-handle::after { width: 40px; height: 40px; margin: -20px 0 0 -20px; font-size: 1rem; }
+
+  /* --- Қадамҳо: 2 сутун --- */
+  .steps { grid-template-columns: 1fr 1fr; gap: 26px 14px; }
+  .step { padding: 0 4px; }
+  .dot { width: 52px; height: 52px; font-size: 1.4rem; margin-bottom: 12px; }
+  .step h3 { font-size: 1.2rem; margin-bottom: 4px; }
+  .step p { font-size: .78rem; line-height: 1.5; }
+
+  /* --- Чаро мо: 2 сутун --- */
+  .why-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .why-item { padding: 20px 16px; border-radius: 18px; }
+  .why-item b { font-size: 2rem; }
+  .why-item h3 { font-size: 1.2rem; margin: 6px 0 4px; }
+  .why-item p { font-size: .76rem; line-height: 1.5; }
+
+  /* --- Галерея: бо ангушт ба рост кашида мешавад --- */
+  .gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 -6vw; padding: 0 6vw 10px; scroll-padding: 0 6vw; scrollbar-width: none; }
+  .gallery::-webkit-scrollbar { display: none; }
+  .tile { flex: 0 0 62%; height: 240px; border-radius: 18px; scroll-snap-align: start; }
+  .tile span { padding: 36px 16px 14px; font-size: .82rem; }
+
+  /* --- Духтур: ду сутун (акс чап, матн рост) --- */
+  .doctor-inner { grid-template-columns: .8fr 1.2fr; gap: 16px; align-items: start; }
+  .doctor-photo { height: 300px; border-radius: 90px 90px 16px 16px; }
+  .doctor-text h2 { font-size: 1.6rem; }
+  .role { font-size: .78rem; margin: 4px 0 10px; }
+  .doctor-text > p { font-size: .8rem; line-height: 1.55; }
+  .creds { margin: 12px 0 16px; }
+  .creds li { font-size: .75rem; padding-left: 20px; margin-bottom: 6px; line-height: 1.45; }
+  .doctor-text .btn { padding: 10px 20px; font-size: .8rem; }
+
+  /* --- Шарҳҳо: бо ангушт ба рост кашида мешаванд --- */
+  .reviews .grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 -6vw; padding: 0 6vw 12px; scroll-padding: 0 6vw; scrollbar-width: none; }
+  .reviews .grid::-webkit-scrollbar { display: none; }
+  .reviews .review { flex: 0 0 82%; padding: 24px 20px; scroll-snap-align: start; }
+  .review::before { font-size: 4.5rem; left: 18px; }
+  .stars { margin: 20px 0 8px; }
+  .review p { font-size: .88rem; margin-bottom: 12px; }
+
+  /* --- FAQ --- */
+  details { padding: 16px 18px; border-radius: 14px; margin-bottom: 10px; }
+  summary { font-size: .92rem; }
+  details p { font-size: .85rem; }
+
+  /* --- Тамос ва форма --- */
+  .contact-info h2 { font-size: 2.1rem; }
+  .form-box { padding: 22px; border-radius: 20px; }
+  .chips span { padding: 8px 14px; font-size: .8rem; }
+  .form-box input[type="text"], .form-box input[type="tel"], .form-box input[type="date"], .form-box input[type="time"] { padding: 14px; }
+
+  /* --- Дар телефон танҳо як тугмаи хурди занг (чап-поён) --- */
+  .float-btns { right: auto; left: 14px; bottom: 16px; }
+  .fb-wa, .fb-tg { display: none; }
+  .fb { width: 48px; height: 48px; }
+  .fb svg { width: 22px; height: 22px; }
 }
 
-@media (max-width: 560px) {
-  .steps { grid-template-columns: 1fr; }
+@media (max-width: 380px) {
+  .hero h1 { font-size: 1.45rem; }
   .row2 { grid-template-columns: 1fr; }
 }
