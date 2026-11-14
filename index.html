@@ -1,310 +1,445 @@
 <!DOCTYPE html>
-<html lang="tg">
+<html lang="tg" data-theme="dark">
 <head>
   <!-- ===== ТАНЗИМОТИ САҲИФА ===== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#3a2220">
+  <meta name="theme-color" content="#0b0b14">
 
   <!-- ===== НОМ ВА ТАВСИФ БАРОИ GOOGLE ва ПЕШНАМОИШИ ЛИНК ===== -->
-  <title>555: тортҳои фармоишӣ дар Душанбе</title>
-  <meta name="description" content="Тортҳои зебо ва болаззат барои зодрӯз, тӯй ва ҳар ид. Торти худро онлайн созед ва фармоиш диҳед.">
-  <meta property="og:title" content="555: тортҳои фармоишӣ">
-  <meta property="og:description" content="Торти худро созед: таъм, ранг ва ороишро худатон интихоб кунед.">
+  <title>Ҳаракат · Motion Lab: ҳамаи аниматсияҳои веб дар як сайт</title>
+  <meta name="description" content="12 намуди аниматсияи веб дар як сайт: GSAP, 3D (Three.js), скролл, SVG, ҳамкорӣ бо муш ва ангушт.">
+  <meta property="og:title" content="Ҳаракат · Motion Lab">
+  <meta property="og:description" content="Скролл кунед, муш ҳаракат диҳед, ангушт кашед: ҳама чиз зинда аст.">
   <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
 
-  <!-- ===== ИКОНАИ САЙТ ===== -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
-
-  <!-- ===== ШРИФТҲО: Cormorant = сарлавҳа, Montserrat = матн ===== -->
+  <!-- ===== ШРИФТҲО: Montserrat = сарлавҳа, Inter = матн, JetBrains Mono = ёддошт ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- ===== ХАРИТАИ КИТОБХОНАҲОИ 3D (барои scene.js) =====
+       Барои чӣ: "three" ба CDN нишон дода мешавад. Версия мустаҳкам карда шудааст. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
 
-  <!-- ===== ЭКРАНИ ОҒОЗ ===== -->
-  <div class="preloader" id="preloader">
-    <div class="pl-logo">555</div>
-    <div class="pl-bar"></div>
+  <!-- ===== 00 · ЭКРАНИ ОҒОЗ (loader) =====
+       Барои чӣ: шумориш 0 то 100 ва пардаи боло рафта. JS идора мекунад. -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-num mono"><span id="loaderNum">0</span>%</div>
+      <div class="loader-bar"><i id="loaderBar"></i></div>
+      <p class="mono">Ҳаракат · Motion Lab</p>
+    </div>
   </div>
+
+  <!-- ===== КУРСОРИ МАХСУС (танҳо дар компютер) ===== -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
   <!-- ===== ХАТТИ ПЕШРАФТИ СКРОЛЛ ===== -->
   <div class="progress" id="progress"></div>
 
   <!-- ===== HEADER ===== -->
-  <header class="header">
+  <header class="header" id="header">
     <div class="container header-inner">
-      <a href="#top" class="logo">555 <small>тортҳо</small></a>
-      <nav class="nav" id="nav">
-        <a href="#collection">Тортҳо</a>
-        <a href="#builder">Созанда</a>
-        <a href="#process">Ҷараён</a>
-        <a href="#faq">Саволҳо</a>
-        <a href="#contact">Тамос</a>
+      <a href="#top" class="logo">Ҳаракат<span>.</span></a>
+      <nav class="nav mono">
+        <a href="#t01">01 hover</a>
+        <a href="#t03">03 скролл</a>
+        <a href="#t07">07 муш</a>
+        <a href="#t11">11 3D</a>
       </nav>
-      <a href="#builder" class="btn btn-gold header-btn">Фармоиш додан</a>
-      <button class="burger" id="burger" aria-label="Меню">☰</button>
+      <button class="theme-btn" id="themeBtn" aria-label="Иваз кардани мавзӯъ" data-hover>
+        <span class="sun">☀</span><span class="moon">☾</span>
+      </button>
     </div>
   </header>
 
-  <!-- ===== HERO: матн (чап) ва торт (рост) ===== -->
+  <!-- ===== HERO: 3D (Three.js) + матни ҳарф ба ҳарф ===== -->
   <section class="hero" id="top">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="sprinkles" id="sprinkles"></div>
-
+    <canvas id="heroCanvas"></canvas>
     <div class="container hero-inner">
-      <div class="hero-text">
-        <span class="eyebrow anim" style="animation-delay:.2s">Тортҳои фармоишӣ · Душанбе</span>
-        <h1>
-          <span class="line"><span>Торте, ки</span></span>
-          <span class="line"><span><em>лаҳзаро</em> ид</span></span>
-          <span class="line"><span>мекунад</span></span>
-        </h1>
-        <p class="anim" style="animation-delay:.9s">Тортҳои зебо ва болаззат барои зодрӯз, тӯй ва ҳар ид. Таъм, ранг ва ороишро худатон интихоб мекунед.</p>
-        <div class="hero-actions anim" style="animation-delay:1.1s">
-          <a href="#builder" class="btn btn-gold">Торти худро созед</a>
-          <a data-link="tel" class="btn btn-outline">Занг задан</a>
-        </div>
+      <p class="eyebrow mono">Motion Lab · 12 намуди аниматсия</p>
+      <h1 class="hero-title">
+        <span data-split>Ҳаракат</span>
+        <span class="grad" data-split>ҷон мебахшад</span>
+      </h1>
+      <p class="hero-sub">Ҳамаи аниматсияҳои муҳими веб дар як сайт. Скролл кунед, муш ҳаракат диҳед, ангушт кашед: ҳама чиз зинда аст.</p>
+      <div class="hero-actions">
+        <a href="#t01" class="btn magnetic" data-hover>Оғоз кунед</a>
+        <a href="#t11" class="btn btn-ghost magnetic" data-hover>3D-ро бинед</a>
       </div>
-
-      <!-- Торти калон (JS онро мекашад) -->
-      <div class="hero-visual anim" style="animation-delay:.5s">
-        <div class="cake-svg hero-cake" id="heroCake"></div>
-      </div>
+      <div class="scroll-hint mono">скролл ↓</div>
     </div>
   </section>
 
-  <!-- ===== MARQUEE ===== -->
+  <!-- ===== NАВОРИ ҲАРАКАТКУНАНДА (marquee): бо суръати скролл каҷ мешавад ===== -->
   <div class="marquee">
-    <div class="track">
-      <span>Зодрӯз</span><span>Тӯй</span><span>Кӯдакон</span><span>Шоколадӣ</span><span>Мевагӣ</span><span>Фармоишӣ</span>
-      <span>Зодрӯз</span><span>Тӯй</span><span>Кӯдакон</span><span>Шоколадӣ</span><span>Мевагӣ</span><span>Фармоишӣ</span>
+    <div class="marquee-skew">
+      <div class="marquee-track">
+        <span>Transition</span><span>Keyframes</span><span>Scroll</span><span>Parallax</span><span>Text</span><span>SVG</span>
+        <span>Transition</span><span>Keyframes</span><span>Scroll</span><span>Parallax</span><span>Text</span><span>SVG</span>
+      </div>
     </div>
   </div>
 
-  <!-- ===== COLLECTION: 6 намуна =====
-       data-cake = тавсифи торт (JS онро мекашад). Агар акс гузоред (img/cake1.jpg...), акс болои расм меояд.
-       Тугмаи «Фармоиш додан» созандаро бо ҳамин торт пур мекунад. -->
-  <section class="collection" id="collection">
+  <!-- ===== МУНДАРИҶА: 12 намуд ===== -->
+  <section class="sec" id="map">
     <div class="container">
-      <div class="section-head reveal">
-        <span class="tag">Тортҳо</span>
-        <h2>Намунаҳои <em>маъмул</em></h2>
-      </div>
-
-      <div class="grid">
-        <article class="card reveal" data-cake='{"tiers":2,"sponge":"#5a3326","cream":"#f8dfe3","deco":"berries","text":"Зодрӯз муборак"}'>
-          <div class="art"><div class="cake-svg"></div><div class="photo" style="background-image:url('img/cake1.jpg')"></div></div>
-          <h3>Зодрӯз</h3><p>Торт барои зодрӯз бо навиштаҷоти дилхоҳ.</p>
-          <a href="#builder" class="link">Фармоиш додан →</a>
-        </article>
-
-        <article class="card reveal" data-cake='{"tiers":3,"sponge":"#f0d9a8","cream":"#fff6e6","deco":"flowers","text":""}'>
-          <div class="art"><div class="cake-svg"></div><div class="photo" style="background-image:url('img/cake2.jpg')"></div></div>
-          <h3>Тӯй</h3><p>Торти сатҳдор бо гулҳо барои рӯзи махсус.</p>
-          <a href="#builder" class="link">Фармоиш додан →</a>
-        </article>
-
-        <article class="card reveal" data-cake='{"tiers":1,"sponge":"#f0d9a8","cream":"#cfe5f3","deco":"candles","text":"Ҳуррам!"}'>
-          <div class="art"><div class="cake-svg"></div><div class="photo" style="background-image:url('img/cake3.jpg')"></div></div>
-          <h3>Кӯдакон</h3><p>Торти рангоранг ва шамъҳо барои хурдсолон.</p>
-          <a href="#builder" class="link">Фармоиш додан →</a>
-        </article>
-
-        <article class="card reveal" data-cake='{"tiers":2,"sponge":"#5a3326","cream":"#8a5a48","deco":"choc","text":""}'>
-          <div class="art"><div class="cake-svg"></div><div class="photo" style="background-image:url('img/cake4.jpg')"></div></div>
-          <h3>Шоколадӣ</h3><p>Барои дӯстдорони шоколади ғафс ва тунд.</p>
-          <a href="#builder" class="link">Фармоиш додан →</a>
-        </article>
-
-        <article class="card reveal" data-cake='{"tiers":2,"sponge":"#f0d9a8","cream":"#fff6e6","deco":"berries","text":""}'>
-          <div class="art"><div class="cake-svg"></div><div class="photo" style="background-image:url('img/cake5.jpg')"></div></div>
-          <h3>Мевагӣ</h3><p>Крем ва меваҳои тоза, сабук ва тару тоза.</p>
-          <a href="#builder" class="link">Фармоиш додан →</a>
-        </article>
-
-        <article class="card reveal" data-cake='{"tiers":1,"sponge":"#9c2f3b","cream":"#f8dfe3","deco":"flowers","text":"Ташаккур"}'>
-          <div class="art"><div class="cake-svg"></div><div class="photo" style="background-image:url('img/cake6.jpg')"></div></div>
-          <h3>Бо навиштаҷот</h3><p>Табрик ё ташаккур бо хатти зебо болои торт.</p>
-          <a href="#builder" class="link">Фармоиш додан →</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== BUILDER: созандаи торт ва форма (Netlify Forms) =====
-       data-netlify="true" = Netlify формаро худаш мешиносад.
-       Ҳар интихоб (name="...") ба фармоиш медарояд.
-       data-* дар радиоҳо = маълумот барои кашидани торт. -->
-  <section class="builder" id="builder">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="tag">Созанда</span>
-        <h2>Торти <em>орзуи</em> худро созед</h2>
-        <p class="sub">Интихоб кунед, ва торт дар назди чашм тағйир меёбад.</p>
-      </div>
-
-      <div class="builder-grid">
-
-        <!-- Тасвири торт (дар телефон дар боло мемонад) -->
-        <div class="b-preview">
-          <div class="b-stage"><div class="cake-svg" id="cakePreview"></div></div>
-          <p class="b-sum" id="sum"></p>
+      <div class="sec-head" data-reveal>
+        <span class="num mono">★</span>
+        <div>
+          <h2>Хаританамо: 12 намуд</h2>
+          <p>Ҳар намуд дар як қисм намоиш дода мешавад. Ба онҳо ҳамроҳ: экрани оғоз, курсори махсус ва скролли нарм (Lenis).</p>
         </div>
-
-        <!-- Форма -->
-        <form id="orderForm" class="b-form reveal" name="cake-order" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="cake-order">
-          <input type="hidden" name="summary" id="summaryField">
-          <p class="hp"><label>Нагузоред: <input name="bot-field"></label></p>
-
-          <div class="fields">
-
-            <!-- 1. ҲАҶМ: шумораи қабатҳоро муайян мекунад -->
-            <span class="opt-title">1. Ҳаҷм</span>
-            <div class="chips">
-              <label><input type="radio" name="size" value="6 нафар" data-label="6 нафар" data-tiers="1"><span>6 нафар</span></label>
-              <label><input type="radio" name="size" value="10 нафар" data-label="10 нафар" data-tiers="2" checked><span>10 нафар</span></label>
-              <label><input type="radio" name="size" value="16 нафар" data-label="16 нафар" data-tiers="3"><span>16 нафар</span></label>
-            </div>
-
-            <!-- 2. ТАЪМ: ранги бисквитро муайян мекунад -->
-            <span class="opt-title">2. Таъм</span>
-            <div class="chips">
-              <label><input type="radio" name="flavor" value="Шоколадӣ" data-label="Шоколадӣ" data-sponge="#5a3326" checked><span>Шоколадӣ</span></label>
-              <label><input type="radio" name="flavor" value="Ванилӣ" data-label="Ванилӣ" data-sponge="#f0d9a8"><span>Ванилӣ</span></label>
-              <label><input type="radio" name="flavor" value="Карамелӣ" data-label="Карамелӣ" data-sponge="#c48a4d"><span>Карамелӣ</span></label>
-              <label><input type="radio" name="flavor" value="Бархати сурх" data-label="Бархати сурх" data-sponge="#9c2f3b"><span>Бархати сурх</span></label>
-            </div>
-
-            <!-- 3. РАНГИ КРЕМ -->
-            <span class="opt-title">3. Ранги крем</span>
-            <div class="swatches">
-              <label title="Пушти"><input type="radio" name="cream" value="Пушти" data-label="пушти" data-color="#f8dfe3" checked><span style="--c:#f8dfe3"></span></label>
-              <label title="Крем"><input type="radio" name="cream" value="Крем" data-label="крем" data-color="#fff6e6"><span style="--c:#fff6e6"></span></label>
-              <label title="Шоколадӣ"><input type="radio" name="cream" value="Шоколадӣ" data-label="шоколадӣ" data-color="#8a5a48"><span style="--c:#8a5a48"></span></label>
-              <label title="Кабуд"><input type="radio" name="cream" value="Кабуд" data-label="кабуд" data-color="#cfe5f3"><span style="--c:#cfe5f3"></span></label>
-            </div>
-
-            <!-- 4. ОРОИШ -->
-            <span class="opt-title">4. Ороиш</span>
-            <div class="chips">
-              <label><input type="radio" name="deco" value="Мева" data-label="мева" data-deco="berries" checked><span>Мева</span></label>
-              <label><input type="radio" name="deco" value="Шоколад" data-label="шоколад" data-deco="choc"><span>Шоколад</span></label>
-              <label><input type="radio" name="deco" value="Гул" data-label="гул" data-deco="flowers"><span>Гул</span></label>
-              <label><input type="radio" name="deco" value="Шамъ" data-label="шамъ" data-deco="candles"><span>Шамъ</span></label>
-            </div>
-
-            <!-- 5. НАВИШТАҶОТ -->
-            <span class="opt-title">5. Навиштаҷот болои торт</span>
-            <input type="text" name="text" id="cakeText" maxlength="22" placeholder="Масалан: Зодрӯз муборак">
-
-            <!-- 6. МАЪЛУМОТИ ШУМО -->
-            <span class="opt-title">6. Маълумоти шумо</span>
-            <input type="text" name="name" placeholder="Номи шумо" required>
-            <input type="tel" name="phone" placeholder="Рақами телефон" required>
-            <input type="date" name="date" aria-label="Санаи гирифтан">
-            <input type="text" name="note" placeholder="Эзоҳ (ихтиёрӣ)">
-
-            <button type="submit" class="btn btn-gold">Фиристодани фармоиш</button>
-          </div>
-
-          <!-- Паёми муваффақият -->
-          <div class="form-ok" id="formOk" hidden>
-            <div class="ok-icon">✓</div>
-            <h3>Ташаккур!</h3>
-            <p>Фармоиши шумо қабул шуд. Мо ба наздикӣ занг мезанем ва тафсилотро мувофиқа мекунем.</p>
-          </div>
-        </form>
+      </div>
+      <div class="map-grid" data-stagger>
+        <a href="#t01" data-hover><b class="mono">01</b>Transition · hover</a>
+        <a href="#t02" data-hover><b class="mono">02</b>Keyframes · такрор</a>
+        <a href="#t03" data-hover><b class="mono">03</b>Скролл · пайдошавӣ</a>
+        <a href="#t04" data-hover><b class="mono">04</b>Параллакс</a>
+        <a href="#t05" data-hover><b class="mono">05</b>Матн · калимаҳо</a>
+        <a href="#t06" data-hover><b class="mono">06</b>SVG · кашидани хат</a>
+        <a href="#t07" data-hover><b class="mono">07</b>Муш · ҳамкорӣ</a>
+        <a href="#t08" data-hover><b class="mono">08</b>Drag · слайдер</a>
+        <a href="#t09" data-hover><b class="mono">09</b>Микро-ҳамкорӣ</a>
+        <a href="#t10" data-hover><b class="mono">10</b>Скролли уфуқӣ</a>
+        <a href="#t11" data-hover><b class="mono">11</b>3D · Three.js</a>
+        <a href="#t12" data-hover><b class="mono">12</b>Тағйири саҳифа</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== PROCESS: 4 қадам ===== -->
-  <section class="process" id="process">
+  <!-- ===== 01 · TRANSITION ВА HOVER (CSS) ===== -->
+  <section class="sec" id="t01">
     <div class="container">
-      <div class="section-head reveal">
-        <span class="tag">Ҷараён</span>
-        <h2>Чӣ тавр <em>фармоиш диҳед</em></h2>
+      <div class="sec-head" data-reveal>
+        <span class="num mono">01</span>
+        <div>
+          <h2>Transition ва hover</h2>
+          <p>Тағйири нарм ҳангоми наздик кардани муш. Кӯдаки ҳама аниматсияҳо. <code>style.css → 01</code></p>
+        </div>
       </div>
-      <div class="steps">
-        <div class="step reveal"><div class="dot">1</div><h3>Интихоб</h3><p>Торти худро дар созанда созед.</p></div>
-        <div class="step reveal"><div class="dot">2</div><h3>Тафсилот</h3><p>Ном, телефон ва санаро нависед.</p></div>
-        <div class="step reveal"><div class="dot">3</div><h3>Тасдиқ</h3><p>Мо занг мезанем ва нарху вақтро мефаҳмонем.</p></div>
-        <div class="step reveal"><div class="dot">4</div><h3>Гирифтан</h3><p>Торт дар вақти муайяншуда омода аст.</p></div>
+      <div class="hv-grid" data-stagger>
+        <div class="hv hv-lift" data-hover><h3>Lift</h3><p>Боло рафтан ва соя</p></div>
+        <div class="hv hv-fill" data-hover><h3>Fill</h3><p>Пур шудани ранг аз поён</p></div>
+        <div class="hv hv-spin" data-hover><div class="ico">✦</div><h3>Spin</h3><p>Чархзании нишона</p></div>
+        <div class="hv hv-border" data-hover><h3>Border</h3><p>Ҳалқаи гардони рангин</p></div>
+        <div class="hv hv-zoom" data-hover><div class="zoom-bg"></div><h3>Zoom</h3><p>Калон шудани фон</p></div>
+        <div class="hv hv-link" data-hover><span class="u-link">Underline</span><p>Хати зеркашанда меафзояд</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== WHY: чаро мо (фони тира) ===== -->
-  <section class="why" id="why">
+  <!-- ===== 02 · KEYFRAMES (CSS, худкор) ===== -->
+  <section class="sec alt" id="t02">
     <div class="container">
-      <div class="section-head reveal">
-        <span class="tag tag-light">Чаро мо</span>
-        <h2>Ҳар торт <em>инфиродӣ</em></h2>
+      <div class="sec-head" data-reveal>
+        <span class="num mono">02</span>
+        <div>
+          <h2>Keyframes: ҳаракати доимӣ</h2>
+          <p>Бе амали корбар худаш такрор мешавад. <code>style.css → 02</code></p>
+        </div>
       </div>
-      <div class="why-grid">
-        <div class="why-item reveal"><b>01</b><h3>Инфиродӣ</h3><p>Ҳар торт тибқи хоҳиши шумо сохта мешавад.</p></div>
-        <div class="why-item reveal"><b>02</b><h3>Таъми дилхоҳ</h3><p>Бисквит, крем ва ороишро худатон интихоб мекунед.</p></div>
-        <div class="why-item reveal"><b>03</b><h3>Вақти муайян</h3><p>Санаи гирифтанро худатон нишон медиҳед.</p></div>
-        <div class="why-item reveal"><b>04</b><h3>Содда</h3><p>Фармоиш дар якчанд дақиқа, бе овезон шудан.</p></div>
+      <div class="kf-grid" data-stagger>
+        <div class="kf"><div class="spinner"></div><span class="mono">spin</span></div>
+        <div class="kf"><div class="eq"><i></i><i></i><i></i><i></i><i></i></div><span class="mono">equalizer</span></div>
+        <div class="kf"><div class="ball"></div><span class="mono">bounce</span></div>
+        <div class="kf"><div class="blob"></div><span class="mono">morph</span></div>
+        <div class="kf"><div class="orbit"><i></i></div><span class="mono">orbit</span></div>
+        <div class="kf"><div class="typing mono">Салом, ҷаҳон!</div><span class="mono">typing</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FAQ: саволҳои маъмул ===== -->
-  <section class="faq" id="faq">
-    <div class="container faq-inner">
-      <div class="section-head reveal">
-        <span class="tag">Саволҳо</span>
-        <h2>Саволҳои <em>маъмул</em></h2>
+  <!-- ===== 03 · СКРОЛЛ: ПАЙДОШАВӢ (GSAP ScrollTrigger) ===== -->
+  <section class="sec" id="t03">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="num mono">03</span>
+        <div>
+          <h2>Пайдошавӣ ҳангоми скролл</h2>
+          <p>Ҳар унсур вақте ба экран медарояд, нарм пайдо мешавад. Рақамҳо мешуморанд. <code>script.js → 03</code></p>
+        </div>
       </div>
-      <details class="reveal"><summary>Чанд рӯз пеш фармоиш диҳам?</summary><p>Беҳтар аст якчанд рӯз пеш. Барои тӯй ва тортҳои мураккаб ҳарчи пештар. Вақти аниқро ҳангоми занг мефаҳмонем.</p></details>
-      <details class="reveal"><summary>Нарх чанд пул аст?</summary><p>Нарх аз ҳаҷм, таъм ва ороиш вобаста аст. Пас аз дархост нархи аниқро мегӯем.</p></details>
-      <details class="reveal"><summary>Навиштаҷот ва ороишро худам интихоб мекунам?</summary><p>Бале. Дар созанда таъм, ранг, ороиш ва навиштаҷотро худатон интихоб мекунед.</p></details>
-      <details class="reveal"><summary>Таҳвил ҳаст?</summary><p>Дар бораи таҳвил ё гирифтан ҳангоми занг мефаҳмем.</p></details>
+      <div class="stat-grid" data-stagger>
+        <div class="stat"><b data-count="12">0</b><span>намуди аниматсия</span></div>
+        <div class="stat"><b data-count="60">0</b><span>FPS ҳадаф</span></div>
+        <div class="stat"><b data-count="3">0</b><span>китобхона</span></div>
+        <div class="stat"><b data-count="4">0</b><span>файл</span></div>
+      </div>
     </div>
   </section>
 
-  <!-- ===== CONTACT =====
-       Линкҳо аз script.js (SHOP) пур мешаванд; холӣ бошанд, пинҳон мешаванд. -->
-  <section class="contact" id="contact">
-    <div class="container contact-inner reveal">
-      <span class="tag tag-light">Тамос</span>
-      <h2>Бо мо <em>тамос</em> гиред</h2>
-      <p>Савол доред ё хоҳед тортро якҷоя интихоб кунем? Занг занед ё нависед.</p>
-      <div class="c-links">
-        <a data-link="tel" class="c-link"><b>Занг</b><span data-text="phoneText"></span></a>
-        <a data-link="wa" class="c-link"><b>WhatsApp</b><span>Паём нависед</span></a>
-        <a data-link="tg" class="c-link"><b>Telegram</b><span>Паём нависед</span></a>
-        <a data-link="ig" class="c-link"><b>Instagram</b><span>Тортҳои мо</span></a>
+  <!-- ===== 04 · ПАРАЛЛАКС ===== -->
+  <section class="sec alt" id="t04">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="num mono">04</span>
+        <div>
+          <h2>Параллакс</h2>
+          <p>Қабатҳо ҳангоми скролл бо суръати гуногун ҳаракат мекунанд ва чуқурӣ меофаранд. <code>script.js → 04</code></p>
+        </div>
       </div>
-      <p class="addr" data-text="address"></p>
+      <div class="px" data-reveal>
+        <div class="shape s1" data-speed="0.9" data-rot="120"></div>
+        <div class="shape s2" data-speed="-0.6" data-rot="-90"></div>
+        <div class="shape s3" data-speed="0.4" data-rot="200"></div>
+        <div class="shape s4" data-speed="-1" data-rot="60"></div>
+        <div class="shape s5" data-speed="0.7"></div>
+        <div class="px-title">Параллакс</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 05 · МАТН ===== -->
+  <section class="sec" id="t05">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="num mono">05</span>
+        <div>
+          <h2>Матн зинда мешавад</h2>
+          <p>Калимаҳо бо скролл равшан мешаванд, ҳарфҳо ҳангоми hover омехта мешаванд, калимаҳо иваз мешаванд. <code>script.js → 05</code></p>
+        </div>
+      </div>
+
+      <!-- Калимаҳо бо скролл равшан мешаванд -->
+      <p class="scrub-text" data-scrub>Ҳар калима бо скролл равшан мешавад. Ин усул барои ҳикоя ва сарлавҳаҳои калон хеле муассир аст ва хонандаро ба матн ҷалб мекунад.</p>
+
+      <div class="text-demos" data-stagger>
+        <div class="td">
+          <span class="mono lbl">scramble: ба ҳарфҳо муш гузоред</span>
+          <button class="scramble" data-text="Ҳаракат" data-hover>Ҳаракат</button>
+        </div>
+        <div class="td">
+          <span class="mono lbl">rotator: калимаҳо иваз мешаванд</span>
+          <p class="rot-line">Ман месозам: <span class="rot-wrap"><span class="rotator" id="rotator">сайт</span></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 06 · SVG: КАШИДАНИ ХАТ ===== -->
+  <section class="sec alt" id="t06">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="num mono">06</span>
+        <div>
+          <h2>SVG: хат худаш кашида мешавад</h2>
+          <p>Хат бо суръати скролл кашида мешавад (stroke-dashoffset). <code>script.js → 06</code></p>
+        </div>
+      </div>
+      <div class="svg-grid">
+        <div class="svg-box wide" data-reveal>
+          <svg viewBox="0 0 620 160" aria-hidden="true">
+            <defs>
+              <linearGradient id="gStroke" x1="0" x2="1">
+                <stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#00e5c3"/>
+              </linearGradient>
+            </defs>
+            <path class="draw" d="M10 80 C 60 10, 110 150, 160 80 S 260 10, 310 80 S 410 150, 460 80 S 560 10, 610 80"/>
+          </svg>
+        </div>
+        <div class="svg-box" data-reveal>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path class="draw" d="M12 5.5c-1.2-1-2.6-1.5-4-1.5C5.5 4 4 6 4 8.5c0 2.5 1 4 1.5 6 .5 2 .7 5.5 2.5 5.5 1.6 0 1.2-3.5 2.2-4.8.5-.6 1.1-.8 1.8-.8s1.3.2 1.8.8c1 1.3.6 4.8 2.2 4.8 1.8 0 2-3.5 2.5-5.5.5-2 1.5-3.5 1.5-6C20 6 18.5 4 16 4c-1.4 0-2.8.5-4 1.5z"/>
+          </svg>
+        </div>
+        <div class="svg-box" data-reveal>
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="54" class="ring-bg"/>
+            <circle cx="60" cy="60" r="54" class="draw" transform="rotate(-90 60 60)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 07 · ҲАМКОРӢ БО МУШ ===== -->
+  <section class="sec" id="t07">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="num mono">07</span>
+        <div>
+          <h2>Ҳамкорӣ бо муш</h2>
+          <p>Унсурҳо ба ҳаракати муш ҷавоб медиҳанд. <code>script.js → 07</code></p>
+        </div>
+      </div>
+      <div class="mouse-grid" data-stagger>
+        <!-- Корти 3D бо дурахш -->
+        <div class="tilt">
+          <div class="tilt-in"><div class="glare"></div><h3>Tilt 3D</h3><p>Муш гузоред ва ҳаракат диҳед</p></div>
+        </div>
+        <!-- Тугмаҳои магнитӣ -->
+        <div class="mag-box">
+          <span class="mono lbl">magnetic: ба тугма наздик шавед</span>
+          <div class="mag-row">
+            <a class="btn magnetic" data-hover>Магнит</a>
+            <a class="btn btn-ghost magnetic" data-hover>Кашиш</a>
+          </div>
+        </div>
+        <!-- Равшании пайрави муш -->
+        <div class="spot"><h3>Spotlight</h3><p>Нур аз паси муш меравад</p></div>
+        <!-- Зарраҳо бо муш -->
+        <div class="fx-box"><canvas id="fxCanvas"></canvas><span class="mono">муш ё ангушт ҳаракат диҳед</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 08 · DRAG ВА СЛАЙДЕР ===== -->
+  <section class="sec alt" id="t08">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="num mono">08</span>
+        <div>
+          <h2>Кашидан ва слайдер</h2>
+          <p>Бо муш ё ангушт кашед. <code>script.js → 08</code></p>
+        </div>
+      </div>
+      <div class="drag-grid">
+        <!-- Чипҳои кашидашаванда (GSAP Draggable) -->
+        <div class="board" data-reveal>
+          <span class="mono lbl">drag: чипҳоро кашед</span>
+          <div class="chip-d" style="left:8%;top:30%">Идея</div>
+          <div class="chip-d" style="left:38%;top:55%">Код</div>
+          <div class="chip-d" style="left:66%;top:28%">Деплой</div>
+        </div>
+        <!-- Слайдери «Пеш / Баъд» -->
+        <div class="cmp" id="cmp" data-reveal>
+          <div class="cmp-a">Пеш: оддӣ</div>
+          <div class="cmp-b">Баъд: зинда</div>
+          <div class="cmp-handle"></div>
+          <input type="range" id="cmpRange" min="0" max="100" value="50" aria-label="Пеш ва баъд">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 09 · МИКРО-ҲАМКОРӢ ===== -->
+  <section class="sec" id="t09">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="num mono">09</span>
+        <div>
+          <h2>Микро-ҳамкорӣ</h2>
+          <p>Аниматсияҳои хурд, ки ба ҳар пахшкунӣ посух медиҳанд. <code>style.css → 09</code></p>
+        </div>
+      </div>
+      <div class="micro-grid" data-stagger>
+        <div class="mi"><button class="like" aria-label="Писанд" data-hover>♥</button><span class="mono">like + burst</span></div>
+        <div class="mi"><label class="switch" data-hover><input type="checkbox"><i></i></label><span class="mono">switch</span></div>
+        <div class="mi"><button class="btn ripple-btn" data-hover>Пахш кунед</button><span class="mono">ripple</span></div>
+        <div class="mi"><button class="check-btn" data-hover><span class="cb-text">Фиристодан</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button><span class="mono">success</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 10 · СКРОЛЛИ УФУҚӢ (pin + scrub) ===== -->
+  <section class="h-scroll" id="t10">
+    <div class="h-pin">
+      <div class="container">
+        <div class="sec-head">
+          <span class="num mono">10</span>
+          <div>
+            <h2>Скролли уфуқӣ</h2>
+            <p>Саҳифа мемонад, ва ҳикоя ба тарафи рост ҳаракат мекунад. <code>script.js → 10</code></p>
+          </div>
+        </div>
+      </div>
+      <div class="h-track">
+        <div class="h-panel"><b>01</b><div><h3>Идея</h3><p>Чӣ месозем ва барои кӣ.</p></div></div>
+        <div class="h-panel"><b>02</b><div><h3>Тарҳ</h3><p>Рангҳо, шрифтҳо ва сохтори саҳифа.</p></div></div>
+        <div class="h-panel"><b>03</b><div><h3>Код</h3><p>HTML, CSS ва JavaScript қадам ба қадам.</p></div></div>
+        <div class="h-panel"><b>04</b><div><h3>Аниматсия</h3><p>Ҳаракат, ки сайтро зинда мекунад.</p></div></div>
+        <div class="h-panel"><b>05</b><div><h3>Деплой</h3><p>Ба интернет баровардан бо Netlify.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 11 · 3D (Three.js): бо муш ё ангушт гардонед ===== -->
+  <section class="sec" id="t11">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="num mono">11</span>
+        <div>
+          <h2>3D дар браузер</h2>
+          <p>Ашёро гардонед. Шакл, намуд ва рангро иваз кунед. <code>scene.js</code></p>
+        </div>
+      </div>
+      <div class="lab" data-reveal>
+        <canvas id="labCanvas"></canvas>
+        <div class="lab-ui">
+          <div class="pill-group">
+            <button class="pill on" data-shape="ico" data-hover>Ico</button>
+            <button class="pill" data-shape="torus" data-hover>Torus</button>
+            <button class="pill" data-shape="knot" data-hover>Knot</button>
+          </div>
+          <div class="pill-group">
+            <button class="pill on" data-mode="solid" data-hover>Solid</button>
+            <button class="pill" data-mode="wire" data-hover>Wire</button>
+            <button class="pill" data-mode="points" data-hover>Points</button>
+          </div>
+          <div class="pill-group">
+            <button class="dotc on" data-color="#7c5cff" style="--c:#7c5cff" aria-label="Бунафш" data-hover></button>
+            <button class="dotc" data-color="#00e5c3" style="--c:#00e5c3" aria-label="Фирӯзаӣ" data-hover></button>
+            <button class="dotc" data-color="#ff5c9d" style="--c:#ff5c9d" aria-label="Пушти" data-hover></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 12 · ТАҒЙИРИ САҲИФА (View Transition) ===== -->
+  <section class="sec alt" id="t12">
+    <div class="container cta">
+      <div class="sec-head" data-reveal>
+        <span class="num mono">12</span>
+        <div>
+          <h2>Тағйири саҳифа</h2>
+          <p>Мавзӯъро иваз кунед: тамоми саҳифа аз нуқтаи пахшкунӣ нарм иваз мешавад (View Transitions API). <code>script.js → 12</code></p>
+        </div>
+      </div>
+      <button class="btn big" id="themeBtn2" data-hover>Мавзӯъро иваз кунед</button>
     </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
-    <div class="container">© 2026 555 · Тортҳои фармоишӣ · Душанбе</div>
+    <div class="container footer-inner">
+      <div>
+        <div class="logo">Ҳаракат<span>.</span></div>
+        <p class="mono" data-site="name"></p>
+      </div>
+      <div class="foot-links mono">
+        <a data-site-link="telegram" data-hover>Telegram</a>
+        <a data-site-link="instagram" data-hover>Instagram</a>
+        <a data-site-link="email" data-hover>Email</a>
+      </div>
+    </div>
+    <p class="copy mono">© 2026 · GSAP + ScrollTrigger + Draggable · Lenis · Three.js</p>
   </footer>
 
-  <!-- ===== ТУГМАҲОИ ШИНОКУНАНДА ===== -->
-  <div class="float-btns">
-    <a data-link="wa" target="_blank" class="fb fb-wa" aria-label="WhatsApp">
-      <svg viewBox="0 0 24 24"><path d="M3 21l1.6-4.9A8.5 8.5 0 1 1 8.2 19.5L3 21z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a3.5 3.5 0 0 1-1.8-1.8l.8-1-1-2L9 9.5z"/></svg>
-    </a>
-    <a data-link="tg" target="_blank" class="fb fb-tg" aria-label="Telegram">
-      <svg viewBox="0 0 24 24"><path d="M21 3L3 10.5l6 2.5 2.5 6L21 3z"/><path d="M9 13l12-10"/></svg>
-    </a>
-    <a data-link="tel" class="fb fb-call" aria-label="Занг">
-      <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
-    </a>
-  </div>
+  <!-- ===== КИТОБХОНАҲО (CDN, версияҳо мустаҳкам) =====
+       GSAP = аниматсияи асосӣ, ScrollTrigger = скролл, Draggable = кашидан, Lenis = скролли нарм -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.9/dist/lenis.min.js"></script>
 
+  <!-- ===== КОДИ МО ===== -->
   <script src="script.js"></script>
+  <script type="module" src="scene.js"></script>
 </body>
 </html>
