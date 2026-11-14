@@ -1,109 +1,77 @@
 /* ===== РАНГҲО: ҳамаро инҷо иваз кунед ===== */
 :root {
-  --teal: #06303a;     /* фирӯзаи хеле тира */
-  --teal-2: #0e5a68;   /* фирӯзаи миёна */
-  --aqua: #8fd6cf;     /* ранги равшан */
-  --mint: #e9f4f2;     /* фони сабук */
-  --gold: #c9a45c;     /* тиллоӣ */
-  --gold-d: #a9823b;   /* тиллоии тира */
-  --ink: #13262b;      /* ранги матн */
-  --muted: #5b6d71;    /* матни сабуктар */
-  --bg: #faf8f3;       /* фони саҳифа */
+  --cocoa: #3a2220;     /* шоколадии тира (асосӣ) */
+  --cocoa-2: #5a3a33;   /* шоколадии миёна */
+  --rose: #d4879a;      /* пушти гулобӣ */
+  --blush: #f8dfe3;     /* пушти нарм */
+  --cream: #fff6e6;     /* крем */
+  --gold: #c9a45c;      /* тиллоӣ */
+  --gold-d: #a9823b;    /* тиллоии тира */
+  --ink: #2b1c1a;       /* ранги матн */
+  --muted: #7a625d;     /* матни сабуктар */
+  --bg: #fffaf4;       /* фони саҳифа */
 }
 
 /* ===== СБРОС ва УМУМӣ ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body {
-  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-  color: var(--ink); background: var(--bg);
-  line-height: 1.7; overflow-x: hidden;
-}
-::selection { background: var(--gold); color: #fff; }
+body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.7; overflow-x: hidden; }
+::selection { background: var(--rose); color: #fff; }
 h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; line-height: 1.1; font-weight: 700; }
-h1 em, h2 em { color: var(--gold-d); font-style: italic; }
+h1 em, h2 em { color: var(--rose); font-style: italic; }
 section { scroll-margin-top: 80px; }
 .container { width: min(1180px, 88%); margin: 0 auto; }
 a { color: inherit; }
 
-/* ===== ЭКРАНИ ОҒОЗ (preloader) =====
-   animation = пуштибон: агар JS кор накунад, худаш пас аз 2.4 сония нест мешавад */
-.preloader {
-  position: fixed; inset: 0; z-index: 200; background: var(--teal);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
-  transition: opacity .7s, visibility .7s;
-  animation: plFallback .6s ease 2.4s forwards;
-}
+/* ===== ЭКРАНИ ОҒОЗ (пуштибон: худаш пас аз 2.4 сония нест мешавад) ===== */
+.preloader { position: fixed; inset: 0; z-index: 200; background: var(--cocoa); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; transition: opacity .7s, visibility .7s; animation: plFallback .6s ease 2.4s forwards; }
 .preloader.hide { opacity: 0; visibility: hidden; }
-.pl-logo { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; color: #fff; letter-spacing: .04em; }
+.pl-logo { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; color: var(--gold); letter-spacing: .08em; }
 .pl-bar { width: 150px; height: 2px; background: rgba(255,255,255,.2); border-radius: 2px; overflow: hidden; position: relative; }
-.pl-bar::after { content: ''; position: absolute; inset: 0; width: 40%; background: var(--gold); animation: plMove 1s ease-in-out infinite; }
+.pl-bar::after { content: ''; position: absolute; inset: 0; width: 40%; background: var(--rose); animation: plMove 1s ease-in-out infinite; }
 @keyframes plMove { 0% { transform: translateX(-100%); } 100% { transform: translateX(360%); } }
 @keyframes plFallback { to { opacity: 0; visibility: hidden; } }
 
-/* ===== ХАТТИ ПЕШРАФТ ва НУРИ МУШ ===== */
-.progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 150; background: linear-gradient(90deg, var(--gold), var(--aqua)); }
-.cursor-glow {
-  position: fixed; top: 0; left: 0; width: 420px; height: 420px; margin: -210px 0 0 -210px;
-  border-radius: 50%; pointer-events: none; z-index: 1; opacity: 0; transition: opacity .4s;
-  background: radial-gradient(circle, rgba(201,164,92,.16), transparent 65%);
-}
+.progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 150; background: linear-gradient(90deg, var(--rose), var(--gold)); }
 
-/* ===== ТУГМАҲО (бо дурахши ҳангоми hover) ===== */
-.btn {
-  position: relative; overflow: hidden; display: inline-block;
-  padding: 15px 34px; border-radius: 50px; text-decoration: none;
-  font-weight: 600; font-size: .95rem; border: 2px solid transparent;
-  cursor: pointer; font-family: inherit;
-  transition: transform .3s, box-shadow .3s, background .3s, color .3s;
-}
-.btn::after {
-  content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,.45), transparent);
-  transform: skewX(-20deg); transition: left .7s;
-}
+/* ===== ТУГМАҲО ===== */
+.btn { position: relative; overflow: hidden; display: inline-block; padding: 15px 34px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: .95rem; border: 2px solid transparent; cursor: pointer; font-family: inherit; transition: transform .3s, box-shadow .3s, background .3s, color .3s; }
+.btn::after { content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,.45), transparent); transform: skewX(-20deg); transition: left .7s; }
 .btn:hover::after { left: 140%; }
 .btn:hover { transform: translateY(-3px); }
-.btn-gold { background: var(--gold); color: #fff; box-shadow: 0 10px 28px rgba(201,164,92,.4); }
-.btn-gold:hover { background: var(--gold-d); }
-.btn-outline { border-color: var(--teal); color: var(--teal); }
-.btn-outline:hover { background: var(--teal); color: #fff; }
+.btn-gold { background: var(--rose); color: #fff; box-shadow: 0 10px 28px rgba(212,135,154,.45); }
+.btn-gold:hover { background: #c4708a; }
+.btn-outline { border-color: var(--cocoa); color: var(--cocoa); }
+.btn-outline:hover { background: var(--cocoa); color: #fff; }
 .btn:disabled { opacity: .6; cursor: wait; }
 
 /* ===== HEADER ===== */
-.header {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(250,248,243,.85); backdrop-filter: blur(14px);
-  border-bottom: 1px solid #ece6d6; transition: box-shadow .3s;
-}
-.header.scrolled { box-shadow: 0 8px 30px rgba(6,48,58,.1); }
+.header { position: sticky; top: 0; z-index: 50; background: rgba(255,250,244,.88); backdrop-filter: blur(14px); border-bottom: 1px solid #f0e2d6; transition: box-shadow .3s; }
+.header.scrolled { box-shadow: 0 8px 30px rgba(58,34,32,.1); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 20px; }
-.logo {
-  display: flex; align-items: center; gap: 10px;
-  font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700;
-  color: var(--teal); text-decoration: none;
-}
-.logo svg { width: 30px; height: 30px; fill: none; stroke: var(--gold-d); stroke-width: 1.5; stroke-linejoin: round; }
+.logo { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; font-weight: 700; color: var(--cocoa); text-decoration: none; line-height: 1; }
+.logo small { font-family: 'Montserrat', sans-serif; font-size: .62rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-d); margin-left: 4px; }
 .nav a { position: relative; margin: 0 14px; text-decoration: none; color: var(--ink); font-weight: 500; font-size: .9rem; }
-.nav a::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: var(--gold); transition: width .3s; }
+.nav a::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: var(--rose); transition: width .3s; }
 .nav a:hover::after { width: 100%; }
 .header-btn { padding: 10px 24px; font-size: .88rem; }
-.burger { display: none; background: none; border: none; font-size: 1.8rem; color: var(--teal); cursor: pointer; }
+.burger { display: none; background: none; border: none; font-size: 1.8rem; color: var(--cocoa); cursor: pointer; }
 
 /* ===== HERO ===== */
-.hero { position: relative; padding: 80px 0 110px; overflow: hidden; }
-.hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1.1fr .9fr; gap: 70px; align-items: center; }
-
-/* Шаклҳои оби ҳаракаткунанда дар қафо */
-.blob { position: absolute; border-radius: 50%; filter: blur(70px); z-index: 1; transition: transform .4s ease-out; }
-.blob1 { width: 480px; height: 480px; top: -120px; right: -100px; background: rgba(143,214,207,.5); animation: morph 14s ease-in-out infinite; }
-.blob2 { width: 380px; height: 380px; bottom: -120px; left: -100px; background: rgba(201,164,92,.28); animation: morph 18s ease-in-out infinite reverse; }
+.hero { position: relative; padding: 70px 0 90px; overflow: hidden; }
+.hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1.05fr .95fr; gap: 50px; align-items: center; }
+.blob { position: absolute; border-radius: 50%; filter: blur(70px); z-index: 0; }
+.b1 { width: 480px; height: 480px; top: -140px; right: -100px; background: rgba(248,223,227,.9); animation: morph 14s ease-in-out infinite; }
+.b2 { width: 380px; height: 380px; bottom: -120px; left: -100px; background: rgba(201,164,92,.25); animation: morph 18s ease-in-out infinite reverse; }
 @keyframes morph { 0%, 100% { border-radius: 50%; } 50% { border-radius: 38% 62% 55% 45% / 55% 40% 60% 45%; } }
 
-.eyebrow { display: inline-block; font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-d); margin-bottom: 22px; }
+/* Рангҳое, ки аз боло меафтанд (sprinkles) */
+.sprinkles { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.sprinkles span { position: absolute; top: -24px; width: 6px; height: 16px; border-radius: 4px; opacity: .75; animation: fall linear infinite; }
+@keyframes fall { to { transform: translateY(120vh) rotate(360deg); } }
 
-/* Сарлавҳа: ҳар сатр аз поён боло меояд */
-.hero h1 { font-size: clamp(2.8rem, 6vw, 4.8rem); color: var(--teal); margin-bottom: 26px; }
+.eyebrow { display: inline-block; font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-d); margin-bottom: 20px; }
+.hero h1 { font-size: clamp(2.8rem, 6vw, 5rem); color: var(--cocoa); margin-bottom: 24px; }
 .line { display: block; overflow: hidden; padding-bottom: .12em; }
 .line > span { display: block; transform: translateY(115%); animation: rise 1s cubic-bezier(.2,.8,.2,1) forwards; }
 .line:nth-child(1) > span { animation-delay: .35s; }
@@ -111,240 +79,138 @@ a { color: inherit; }
 .line:nth-child(3) > span { animation-delay: .69s; }
 @keyframes rise { to { transform: translateY(0); } }
 
-/* Пайдошавии унсурҳои дигари hero */
 .anim { opacity: 0; transform: translateY(24px); animation: fadeUp .9s ease forwards; }
 @keyframes fadeUp { to { opacity: 1; transform: none; } }
 
-.hero-text p { color: var(--muted); font-size: 1.05rem; max-width: 500px; margin-bottom: 32px; }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 30px; }
+.hero-text p { color: var(--muted); font-size: 1.05rem; max-width: 480px; margin-bottom: 32px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-/* Нишони боварӣ */
-.chip {
-  display: inline-flex; align-items: center; gap: 10px; margin-bottom: 38px;
-  padding: 10px 18px; border-radius: 40px; font-size: .82rem; font-weight: 500;
-  background: #fff; border: 1px solid #eadfc4; color: var(--teal);
-}
-.chip svg { width: 20px; height: 20px; flex: none; fill: none; stroke: var(--gold-d); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+/* Торт дар hero: нарм боло ва поён меравад */
+.hero-cake { height: 500px; animation: float 6s ease-in-out infinite; filter: drop-shadow(0 30px 30px rgba(58,34,32,.22)); }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
 
-.stats { display: flex; gap: 40px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid #e3dccb; }
-.stat strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--teal); line-height: 1.15; }
-.stat span { font-size: .82rem; color: var(--muted); }
-
-/* Тасвири hero: камон, ҳалқаи тиллоӣ, акс (бо моили 3D) */
-.hero-visual { position: relative; isolation: isolate; perspective: 1000px; }
-.hero-visual::before {
-  content: ''; position: absolute; inset: 26px -26px -26px 26px; z-index: -1;
-  border: 1.5px solid var(--gold); border-radius: 300px 300px 28px 28px;
-}
-.arch {
-  position: relative; height: 560px; overflow: hidden;
-  border-radius: 300px 300px 28px 28px;
-  background: linear-gradient(160deg, var(--teal-2), var(--teal));
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 40px 80px rgba(6,48,58,.3);
-  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  transition: transform .2s ease-out;
-}
-.big-tooth { width: 52%; fill: none; stroke: var(--gold); stroke-width: .3; stroke-linecap: round; stroke-linejoin: round; }
-.big-tooth path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 3.5s ease .8s forwards; }
-@keyframes draw { to { stroke-dashoffset: 0; } }
-
-/* Акс дар болои дандон меояд */
-.photo { position: absolute; inset: 0; background-size: cover; background-position: center top; transition: transform 1s ease; }
-
-/* Корти шишагин */
-.glass {
-  position: absolute; padding: 14px 20px; border-radius: 16px; font-size: .8rem; max-width: 210px;
-  background: rgba(255,255,255,.8); backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,.7); box-shadow: 0 14px 36px rgba(6,48,58,.18);
-  animation: float 5s ease-in-out infinite;
-}
-.glass b { display: block; font-size: 1.05rem; color: var(--teal); }
-.g1 { top: 60px; left: -36px; }
-.g2 { bottom: 60px; right: -30px; animation-delay: 1.8s; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+/* ===== ТОРТ (SVG, ки JS мекашад) ===== */
+.cake-svg svg { width: 100%; height: 100%; display: block; }
+.flame { transform-box: fill-box; transform-origin: 50% 100%; animation: flicker .6s ease-in-out infinite alternate; }
+@keyframes flicker { from { transform: scale(1, 1) rotate(-3deg); } to { transform: scale(.88, 1.12) rotate(3deg); } }
 
 /* ===== MARQUEE ===== */
-.marquee { background: var(--teal); color: #fff; overflow: hidden; padding: 20px 0; white-space: nowrap; }
+.marquee { background: var(--cocoa); color: #fff; overflow: hidden; padding: 20px 0; white-space: nowrap; }
 .track { display: inline-flex; animation: scroll 32s linear infinite; }
 .track span { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; padding: 0 30px; }
 .track span::after { content: '✦'; color: var(--gold); margin-left: 60px; font-size: 1rem; }
 @keyframes scroll { to { transform: translateX(-50%); } }
 
 /* ===== САРЛАВҲАИ ҚИСМҲО ===== */
-.section-head { text-align: center; margin-bottom: 60px; }
-.section-head h2 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); color: var(--teal); }
+.section-head { text-align: center; margin-bottom: 56px; }
+.section-head h2 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); color: var(--cocoa); }
+.section-head .sub { color: var(--muted); margin-top: 10px; }
 .tag { display: inline-block; font-size: .76rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-d); margin-bottom: 12px; }
 .tag-light { color: var(--gold); }
 
-/* ===== SERVICES ва REVIEWS ===== */
-.services, .reviews { padding: 120px 0; }
+/* ===== COLLECTION: кортҳо ===== */
+.collection { padding: 110px 0; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
-.card, .review {
-  position: relative; overflow: hidden; padding: 42px 34px;
-  background: #fff; border-radius: 24px; border: 1px solid #eee7d6;
-  transition: transform .4s, box-shadow .4s, border-color .4s;
-}
-.card > *, .review > * { position: relative; z-index: 1; }
+.card { background: #fff; border: 1px solid #f0e2d6; border-radius: 24px; padding: 18px 18px 26px; transition: transform .4s, box-shadow .4s, border-color .4s; }
+.card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(58,34,32,.14); border-color: var(--rose); }
+.art { position: relative; height: 280px; border-radius: 18px; overflow: hidden; margin-bottom: 20px; background: radial-gradient(circle at 50% 35%, #fff, var(--blush)); }
+.art .cake-svg { position: absolute; inset: 6% 8%; transition: transform .6s; }
+.card:hover .art .cake-svg { transform: scale(1.06) rotate(-1.5deg); }
+.photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.card h3 { font-size: 1.7rem; color: var(--cocoa); margin: 0 6px 6px; }
+.card p { color: var(--muted); font-size: .92rem; margin: 0 6px 14px; }
+.link { margin: 0 6px; font-weight: 600; font-size: .9rem; text-decoration: none; color: var(--rose); }
+.link:hover { color: var(--cocoa); }
 
-/* Равшании пайрави муш (spotlight) */
-.card::before {
-  content: ''; position: absolute; inset: 0; z-index: 0; opacity: 0; transition: opacity .4s;
-  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(201,164,92,.2), transparent 60%);
-}
-.card:hover::before { opacity: 1; }
-.card:hover, .review:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(6,48,58,.14); border-color: var(--gold); }
+/* ===== BUILDER: созанда ===== */
+.builder { padding: 110px 0; background: linear-gradient(180deg, var(--blush), #fff3ec); }
+.builder-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 50px; align-items: start; }
+.b-preview { position: sticky; top: 100px; text-align: center; }
+.b-stage { height: 480px; border-radius: 30px; padding: 18px; background: radial-gradient(circle at 50% 30%, #fff, #fde9ec); box-shadow: 0 30px 70px rgba(58,34,32,.15); }
+.b-sum { margin-top: 16px; font-size: .88rem; color: var(--muted); }
 
-.num { position: absolute; top: 24px; right: 28px; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #d9cfb6; }
-.icon { width: 66px; height: 66px; border-radius: 18px; background: var(--mint); display: flex; align-items: center; justify-content: center; margin-bottom: 26px; transition: background .4s; }
-.icon svg { width: 30px; height: 30px; fill: none; stroke: var(--teal); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .4s, stroke .4s; }
-.card:hover .icon { background: var(--teal); }
-.card:hover .icon svg { stroke: #fff; transform: rotate(-8deg) scale(1.12); }
-.card h3 { font-size: 1.7rem; color: var(--teal); margin-bottom: 10px; }
-.card p, .review p { color: var(--muted); font-size: .95rem; }
+.b-form { background: #fff; padding: 36px; border-radius: 26px; box-shadow: 0 30px 70px rgba(58,34,32,.12); }
+.fields { display: flex; flex-direction: column; gap: 14px; }
+.hp { position: absolute; left: -9999px; }
+.opt-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 700; color: var(--cocoa); margin-top: 8px; }
 
-/* ===== SMILE: слайдери «Пеш / Баъд» ===== */
-.smile { padding: 120px 0; background: #fff; }
-.smile-inner { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
-.smile-text h2 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); color: var(--teal); margin-bottom: 16px; }
-.smile-text > p { color: var(--muted); }
+/* Интихоб (чипҳо) */
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chips label, .swatches label { cursor: pointer; }
+.chips input, .swatches input { position: absolute; opacity: 0; pointer-events: none; }
+.chips span { display: inline-block; padding: 10px 18px; border-radius: 40px; border: 1.5px solid #ecdfd4; font-size: .88rem; font-weight: 500; background: var(--bg); transition: all .25s; }
+.chips label:hover span { border-color: var(--rose); }
+.chips input:checked + span { background: var(--cocoa); border-color: var(--cocoa); color: #fff; }
+.chips input:focus-visible + span, .swatches input:focus-visible + span { box-shadow: 0 0 0 4px rgba(212,135,154,.35); }
 
-.ba {
-  --pos: 50%;
-  position: relative; overflow: hidden; border-radius: 26px; aspect-ratio: 12 / 7;
-  background: linear-gradient(150deg, var(--teal-2), var(--teal));
-  box-shadow: 0 30px 70px rgba(6,48,58,.25); user-select: none;
-}
-.ba-layer { position: absolute; inset: 0; width: 100%; height: 100%; }
-.ba-before use { fill: #cfb36a; stroke: #9c8036; stroke-width: .5; }
-.ba-after use { fill: #fff; stroke: #dfe9ea; stroke-width: .5; }
-.ba-after { clip-path: inset(0 0 0 var(--pos)); filter: drop-shadow(0 0 14px rgba(255,255,255,.35)); }
-.ba-tag {
-  position: absolute; top: 16px; z-index: 3; padding: 6px 16px; border-radius: 30px;
-  font-size: .75rem; font-weight: 600; background: rgba(255,255,255,.9); color: var(--teal);
-}
-.ba-l { left: 16px; }
-.ba-r { right: 16px; }
-.ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; background: #fff; z-index: 3; pointer-events: none; }
-.ba-handle::after {
-  content: '⇄'; position: absolute; top: 50%; left: 50%; width: 48px; height: 48px; margin: -24px 0 0 -24px;
-  border-radius: 50%; background: var(--gold); color: #fff; font-size: 1.2rem;
-  display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.3);
-}
-.ba input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; z-index: 4; }
-.ba-note { text-align: center; font-size: .8rem; color: var(--muted); margin-top: 14px; }
+/* Интихоби ранг (доирачаҳо) */
+.swatches { display: flex; gap: 14px; }
+.swatches span { display: block; width: 44px; height: 44px; border-radius: 50%; background: var(--c); border: 2px solid #e6d8cc; transition: transform .25s, box-shadow .25s; }
+.swatches label:hover span { transform: scale(1.1); }
+.swatches input:checked + span { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--rose); }
 
-/* ===== PROCESS: 4 қадам ===== */
-.process { padding: 120px 0; }
+.b-form input[type="text"], .b-form input[type="tel"], .b-form input[type="date"] {
+  width: 100%; padding: 15px 18px; border: 1.5px solid #ecdfd4; border-radius: 14px; font-size: 1rem; font-family: inherit; background: var(--bg); transition: border-color .3s, box-shadow .3s;
+}
+.b-form input:focus { outline: none; border-color: var(--rose); box-shadow: 0 0 0 4px rgba(212,135,154,.2); }
+.b-form .btn { margin-top: 8px; }
+
+/* Паёми муваффақият */
+.form-ok { text-align: center; padding: 40px 10px; }
+.form-ok[hidden] { display: none; }
+.ok-icon { width: 76px; height: 76px; margin: 0 auto 18px; border-radius: 50%; background: var(--rose); color: #fff; font-size: 2.2rem; display: flex; align-items: center; justify-content: center; animation: pop .6s cubic-bezier(.2,1.4,.4,1); }
+@keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
+.form-ok h3 { font-size: 2.2rem; color: var(--cocoa); }
+.form-ok p { color: var(--muted); margin-top: 6px; }
+.b-form.sent .fields { display: none; }
+
+/* ===== PROCESS ===== */
+.process { padding: 110px 0; }
 .steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
-.steps::before {
-  content: ''; position: absolute; top: 34px; left: 12%; right: 12%; height: 1.5px;
-  background: linear-gradient(90deg, var(--gold), var(--aqua)); opacity: .7;
-}
+.steps::before { content: ''; position: absolute; top: 34px; left: 12%; right: 12%; height: 1.5px; background: linear-gradient(90deg, var(--rose), var(--gold)); opacity: .7; }
 .step { position: relative; text-align: center; padding: 0 10px; }
-.dot {
-  position: relative; z-index: 1; width: 68px; height: 68px; margin: 0 auto 22px; border-radius: 50%;
-  background: var(--bg); border: 1.5px solid var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--teal);
-  transition: transform .4s, background .4s, color .4s;
-}
-.step:hover .dot { background: var(--gold); color: #fff; transform: scale(1.1); }
-.step h3 { font-size: 1.6rem; color: var(--teal); margin-bottom: 8px; }
+.dot { position: relative; z-index: 1; width: 68px; height: 68px; margin: 0 auto 22px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--rose); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--cocoa); transition: transform .4s, background .4s, color .4s; }
+.step:hover .dot { background: var(--rose); color: #fff; transform: scale(1.1); }
+.step h3 { font-size: 1.6rem; color: var(--cocoa); margin-bottom: 8px; }
 .step p { color: var(--muted); font-size: .92rem; }
 
 /* ===== WHY (фони тира) ===== */
-.why { padding: 120px 0; background: var(--teal); color: #fff; position: relative; overflow: hidden; }
-.why::before { content: ''; position: absolute; width: 520px; height: 520px; top: -200px; left: -160px; border-radius: 50%; background: radial-gradient(circle, rgba(201,164,92,.22), transparent 65%); }
+.why { padding: 110px 0; background: var(--cocoa); color: #fff; position: relative; overflow: hidden; }
+.why::before { content: ''; position: absolute; width: 520px; height: 520px; top: -200px; left: -160px; border-radius: 50%; background: radial-gradient(circle, rgba(212,135,154,.25), transparent 65%); }
 .why .section-head h2 { color: #fff; }
-.why .section-head h2 em { color: var(--gold); }
 .why-grid { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
 .why-item { padding: 36px 30px; border: 1px solid rgba(255,255,255,.14); border-radius: 22px; background: rgba(255,255,255,.04); transition: transform .4s, border-color .4s, background .4s; }
 .why-item:hover { transform: translateY(-8px); border-color: var(--gold); background: rgba(255,255,255,.08); }
 .why-item b { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--gold); line-height: 1; }
 .why-item h3 { font-size: 1.6rem; margin: 10px 0 6px; }
-.why-item p { color: #c4d9dc; font-size: .93rem; }
-
-/* ===== CLINIC: галерея ===== */
-.clinic { padding: 120px 0; }
-.gallery { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 22px; }
-.tile { position: relative; height: 400px; border-radius: 24px; overflow: hidden; background: linear-gradient(150deg, var(--mint), #cfe5e2); }
-.tile:hover .photo { transform: scale(1.08); }
-.tile span { position: absolute; left: 0; right: 0; bottom: 0; padding: 50px 24px 22px; color: #fff; font-weight: 600; font-size: .95rem; background: linear-gradient(transparent, rgba(6,48,58,.78)); }
-
-/* ===== DOCTOR ===== */
-.doctor { padding: 120px 0; background: var(--mint); }
-.doctor-inner { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: center; }
-.doctor-photo { position: relative; height: 500px; overflow: hidden; border-radius: 240px 240px 28px 28px; background: linear-gradient(160deg, #fff, #cfe5e2); box-shadow: 0 30px 70px rgba(6,48,58,.18); }
-.doctor-text h2 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); color: var(--teal); }
-.role { color: var(--gold-d); font-weight: 600; margin: 8px 0 18px; }
-.doctor-text > p { color: var(--muted); }
-.creds { list-style: none; margin: 22px 0 28px; }
-.creds li { position: relative; padding-left: 28px; margin-bottom: 10px; color: var(--ink); font-size: .95rem; }
-.creds li::before { content: '✦'; position: absolute; left: 0; color: var(--gold); }
-
-/* ===== REVIEWS ===== */
-.review::before { content: '“'; position: absolute; top: 4px; left: 26px; z-index: 0; font-family: 'Cormorant Garamond', serif; font-size: 6rem; line-height: 1; color: var(--gold); opacity: .35; }
-.stars { color: var(--gold); letter-spacing: 4px; margin: 26px 0 12px; }
-.review p { font-style: italic; margin-bottom: 18px; }
-.review b { color: var(--teal); }
+.why-item p { color: #e3d3cd; font-size: .93rem; }
 
 /* ===== FAQ ===== */
-.faq { padding: 120px 0; background: #fff; }
+.faq { padding: 110px 0; background: #fff; }
 .faq-inner { max-width: 820px; }
-details { background: var(--bg); border: 1px solid #eee7d6; border-radius: 18px; padding: 24px 28px; margin-bottom: 14px; transition: box-shadow .3s, border-color .3s; }
-details[open] { box-shadow: 0 18px 44px rgba(6,48,58,.1); border-color: var(--gold); }
-summary { cursor: pointer; font-weight: 600; color: var(--teal); list-style: none; position: relative; padding-right: 34px; }
+details { background: var(--bg); border: 1px solid #f0e2d6; border-radius: 18px; padding: 24px 28px; margin-bottom: 14px; transition: box-shadow .3s, border-color .3s; }
+details[open] { box-shadow: 0 18px 44px rgba(58,34,32,.1); border-color: var(--rose); }
+summary { cursor: pointer; font-weight: 600; color: var(--cocoa); list-style: none; position: relative; padding-right: 34px; }
 summary::-webkit-details-marker { display: none; }
-summary::after { content: '+'; position: absolute; right: 0; top: -4px; font-size: 1.8rem; color: var(--gold-d); }
+summary::after { content: '+'; position: absolute; right: 0; top: -4px; font-size: 1.8rem; color: var(--rose); }
 details[open] summary::after { content: '−'; }
 details p { margin-top: 14px; color: var(--muted); }
 
 /* ===== CONTACT ===== */
-.contact { padding: 120px 0; background: var(--teal); color: #fff; position: relative; overflow: hidden; }
-.contact::after { content: ''; position: absolute; width: 560px; height: 560px; right: -180px; bottom: -220px; border-radius: 50%; background: radial-gradient(circle, rgba(143,214,207,.22), transparent 65%); }
-.contact-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
-.contact-info h2 { font-size: clamp(2.4rem, 5vw, 3.4rem); margin-bottom: 16px; }
-.contact-info h2 em { color: var(--gold); }
-.contact-info > p { color: #c4d9dc; margin-bottom: 28px; }
-.contact-info ul { list-style: none; }
-.contact-info li { margin-bottom: 12px; padding-left: 26px; position: relative; }
-.contact-info li::before { content: '✦'; position: absolute; left: 0; color: var(--gold); }
-.contact-info li a { text-decoration: none; font-weight: 600; font-size: 1.15rem; }
+.contact { padding: 110px 0; background: linear-gradient(160deg, var(--cocoa-2), var(--cocoa)); color: #fff; text-align: center; position: relative; overflow: hidden; }
+.contact::after { content: ''; position: absolute; width: 560px; height: 560px; right: -180px; bottom: -220px; border-radius: 50%; background: radial-gradient(circle, rgba(212,135,154,.28), transparent 65%); }
+.contact-inner { position: relative; z-index: 1; max-width: 760px; }
+.contact h2 { font-size: clamp(2.4rem, 5vw, 3.4rem); margin-bottom: 14px; }
+.contact h2 em { color: var(--rose); }
+.contact-inner > p { color: #e3d3cd; margin-bottom: 30px; }
+.c-links { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.c-link { min-width: 180px; padding: 18px 26px; border-radius: 18px; text-decoration: none; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); transition: transform .3s, background .3s, border-color .3s; }
+.c-link:hover { transform: translateY(-5px); background: rgba(255,255,255,.14); border-color: var(--gold); }
+.c-link b { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
+.c-link span { font-size: .85rem; color: #e3d3cd; }
+.addr { margin-top: 28px; font-size: .9rem; color: #e3d3cd; }
 
-/* Форма */
-.form-box { background: #fff; padding: 40px; border-radius: 26px; color: var(--ink); box-shadow: 0 40px 80px rgba(0,0,0,.25); }
-.fields { display: flex; flex-direction: column; gap: 16px; }
-.hp { position: absolute; left: -9999px; }
-.lbl { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-
-/* Интихоби хизмат (чипҳо) */
-.chips { display: flex; flex-wrap: wrap; gap: 10px; }
-.chips label { cursor: pointer; }
-.chips input { position: absolute; opacity: 0; pointer-events: none; }
-.chips span { display: inline-block; padding: 10px 18px; border-radius: 40px; border: 1.5px solid #e2ddd0; font-size: .88rem; font-weight: 500; background: var(--bg); transition: all .25s; }
-.chips label:hover span { border-color: var(--gold); }
-.chips input:checked + span { background: var(--teal); border-color: var(--teal); color: #fff; }
-.chips input:focus-visible + span { box-shadow: 0 0 0 4px rgba(201,164,92,.3); }
-
-.form-box input[type="text"], .form-box input[type="tel"], .form-box input[type="date"], .form-box input[type="time"] {
-  width: 100%; padding: 16px 18px; border: 1.5px solid #e2ddd0; border-radius: 14px;
-  font-size: 1rem; font-family: inherit; background: var(--bg); transition: border-color .3s, box-shadow .3s;
-}
-.form-box input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 4px rgba(201,164,92,.18); }
-.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-/* Паёми муваффақият */
-.form-ok { text-align: center; padding: 40px 10px; }
-.form-ok[hidden] { display: none; }
-.ok-icon { width: 76px; height: 76px; margin: 0 auto 18px; border-radius: 50%; background: var(--gold); color: #fff; font-size: 2.2rem; display: flex; align-items: center; justify-content: center; animation: pop .6s cubic-bezier(.2,1.4,.4,1); }
-@keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
-.form-ok h3 { font-size: 2.2rem; color: var(--teal); }
-.form-ok p { color: var(--muted); margin-top: 6px; }
-.form-box.sent .fields { display: none; }
-
-/* ===== FOOTER ===== */
-.footer { padding: 28px 0; text-align: center; background: #041f26; color: #8fa9ae; font-size: .86rem; }
+.footer { padding: 28px 0; text-align: center; background: #241413; color: #b9a39d; font-size: .86rem; }
 
 /* ===== ТУГМАҲОИ ШИНОКУНАНДА ===== */
 .float-btns { position: fixed; right: 20px; bottom: 24px; z-index: 60; display: flex; flex-direction: column; gap: 12px; }
@@ -353,25 +219,17 @@ details p { margin-top: 14px; color: var(--muted); }
 .fb:hover { transform: scale(1.12); }
 .fb-wa { background: #25d366; }
 .fb-tg { background: #29a9eb; }
-.fb-call { background: var(--gold); animation: pulse 2.4s infinite; }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(201,164,92,.6); } 70% { box-shadow: 0 0 0 18px rgba(201,164,92,0); } 100% { box-shadow: 0 0 0 0 rgba(201,164,92,0); } }
+.fb-call { background: var(--rose); animation: pulse 2.4s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212,135,154,.6); } 70% { box-shadow: 0 0 0 18px rgba(212,135,154,0); } 100% { box-shadow: 0 0 0 0 rgba(212,135,154,0); } }
 
-/* ===== НАВОРИ ПОЁНӢ (танҳо дар телефон) ===== */
-.mobile-bar { display: none; }
-
-/* ===== ПАЙДОШАВИИ НАРМ ҲАНГОМИ СКРОЛЛ =====
-   animation = пуштибон: агар JS кор накунад, худаш пас аз 1.8 сония намоён мешавад */
+/* ===== ПАЙДОШАВИИ НАРМ ҲАНГОМИ СКРОЛЛ (пуштибон: пас аз 1.8 сония худаш намоён мешавад) ===== */
 .reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s ease, transform .9s ease; animation: revealFallback .8s ease 1.8s forwards; }
 .reveal.show { opacity: 1; transform: none; }
 @keyframes revealFallback { to { opacity: 1; transform: none; } }
 
-/* Барои касоне, ки аниматсияро хомӯш кардаанд */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; }
 }
-
-/* Дар телефон нури муш лозим нест */
-@media (pointer: coarse) { .cursor-glow { display: none; } }
 
 /* ===== АДАПТИВӣ: ПЛАНШЕТ ===== */
 @media (max-width: 1000px) {
@@ -379,40 +237,75 @@ details p { margin-top: 14px; color: var(--muted); }
   .steps::before { display: none; }
 }
 
-/* ===== АДАПТИВӣ: ТЕЛЕФОН ===== */
+/* ===== АДАПТИВӣ: ТЕЛЕФОН =====
+   Принсип: hero ду сутун мемонад, кортҳо 2 сутун, торти созанда ҳамеша дар боло намоён */
 @media (max-width: 900px) {
-  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg); padding: 16px 6%; border-bottom: 1px solid #ece6d6; }
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg); padding: 16px 6%; border-bottom: 1px solid #f0e2d6; }
   .nav.open { display: flex; }
   .nav a { margin: 10px 0; }
   .burger { display: block; }
   .header-btn { display: none; }
+  .header-inner { padding: 10px 0; }
+  .logo { font-size: 1.8rem; }
 
-  .hero { padding: 50px 0 80px; }
-  .hero-inner, .doctor-inner, .contact-inner, .smile-inner { grid-template-columns: 1fr; gap: 50px; }
-  .arch { height: 440px; }
-  .hero-visual::before { inset: 18px -12px -18px 12px; }
-  .g1 { left: 0; }
-  .g2 { right: 0; }
-  .gallery { grid-template-columns: 1fr; }
-  .tile { height: 300px; }
-  .doctor-photo { height: 400px; }
-  .services, .reviews, .why, .clinic, .doctor, .faq, .contact, .smile, .process { padding: 72px 0; }
-  .form-box { padding: 28px; }
+  .collection, .builder, .process, .why, .faq, .contact { padding: 56px 0; }
+  .section-head { margin-bottom: 28px; }
+  .section-head h2 { font-size: 1.9rem; }
 
-  /* Дар телефон тугмаҳои шинокунанда пинҳон, навори поёнӣ намоён */
-  .float-btns { display: none; }
-  .mobile-bar {
-    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
-    padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); gap: 10px;
-    background: rgba(250,248,243,.95); backdrop-filter: blur(12px); border-top: 1px solid #ece6d6;
-  }
-  .mobile-bar a { flex: 1; text-align: center; padding: 14px; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: .95rem; }
-  .mb-call { border: 2px solid var(--teal); color: var(--teal); }
-  .mb-book { background: var(--gold); color: #fff; }
-  body { padding-bottom: 76px; }
-}
+  /* HERO: ду сутун */
+  .hero { padding: 26px 0 40px; }
+  .hero-inner { grid-template-columns: 1.15fr .85fr; gap: 10px; }
+  .eyebrow { font-size: .56rem; letter-spacing: .1em; margin-bottom: 10px; }
+  .hero h1 { font-size: clamp(1.6rem, 7vw, 2.4rem); margin-bottom: 12px; }
+  .hero-text p { font-size: .8rem; line-height: 1.55; margin-bottom: 16px; }
+  .hero-actions { flex-direction: column; gap: 8px; }
+  .hero-actions .btn { padding: 11px 12px; font-size: .78rem; text-align: center; }
+  .hero-cake { height: 250px; }
 
-@media (max-width: 560px) {
-  .steps { grid-template-columns: 1fr; }
-  .row2 { grid-template-columns: 1fr; }
+  .marquee { padding: 14px 0; }
+  .track span { font-size: 1.2rem; padding: 0 20px; }
+  .track span::after { margin-left: 40px; }
+
+  /* Кортҳо: 2 сутун */
+  .grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .card { padding: 10px 10px 16px; border-radius: 18px; }
+  .art { height: 150px; border-radius: 14px; margin-bottom: 12px; }
+  .card h3 { font-size: 1.2rem; margin: 0 4px 4px; }
+  .card p { font-size: .74rem; line-height: 1.45; margin: 0 4px 8px; }
+  .link { font-size: .76rem; margin: 0 4px; }
+
+  /* Созанда: торт дар боло мемонад, ҳангоми скролл намоён */
+  .builder-grid { grid-template-columns: 1fr; gap: 14px; }
+  .b-preview { top: 52px; z-index: 10; background: #fff3ec; border-radius: 0 0 20px 20px; padding: 6px 10px 8px; box-shadow: 0 10px 24px rgba(58,34,32,.12); }
+  .b-stage { height: 190px; padding: 4px; border-radius: 18px; box-shadow: none; background: transparent; }
+  .b-sum { display: none; }
+  .b-form { padding: 20px; border-radius: 20px; }
+  .opt-title { font-size: 1.15rem; }
+  .chips span { padding: 8px 14px; font-size: .8rem; }
+  .swatches span { width: 38px; height: 38px; }
+  .b-form input[type="text"], .b-form input[type="tel"], .b-form input[type="date"] { padding: 13px 14px; }
+
+  .steps { grid-template-columns: 1fr 1fr; gap: 24px 14px; }
+  .dot { width: 52px; height: 52px; font-size: 1.4rem; margin-bottom: 12px; }
+  .step h3 { font-size: 1.2rem; margin-bottom: 4px; }
+  .step p { font-size: .78rem; line-height: 1.5; }
+
+  .why-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .why-item { padding: 20px 16px; border-radius: 18px; }
+  .why-item b { font-size: 2rem; }
+  .why-item h3 { font-size: 1.2rem; margin: 6px 0 4px; }
+  .why-item p { font-size: .76rem; line-height: 1.5; }
+
+  details { padding: 16px 18px; border-radius: 14px; margin-bottom: 10px; }
+  summary { font-size: .92rem; }
+  details p { font-size: .85rem; }
+
+  .c-link { min-width: 0; flex: 1 1 42%; padding: 14px 16px; }
+  .c-link b { font-size: 1.2rem; }
+
+  /* Дар телефон танҳо як тугмаи хурди занг */
+  .float-btns { right: auto; left: 14px; bottom: 16px; }
+  .fb-wa, .fb-tg { display: none; }
+  .fb { width: 48px; height: 48px; }
+  .fb svg { width: 22px; height: 22px; }
 }
