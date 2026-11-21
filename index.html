@@ -1,175 +1,420 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tg">
-<head>
-  <!-- ===== ТАНЗИМОТИ САҲИФА ===== -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#b8923f">
-  <title>Сайтсоз: сайти зебо дар 5 дақиқа</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+  <head>
+    <!-- ===== ТАНЗИМОТИ САҲИФА ===== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0f" />
+    <title>Sarmoya Create: сайти зебо дар 5 дақиқа</title>
+    <meta
+      name="description"
+      content="Шаблонро интихоб кунед, матнро иваз кунед ва бо як тугма сайти худро ба интернет баред."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>"
+    />
 
-  <!-- ===== ШРИФТҲО ===== -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <!-- ===== ШРИФТҲО ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- =====================================================
+       САҲИФАИ АСОСӢ: ном, шаблонҳо, лоиҳаҳои ман
+       ===================================================== -->
+    <div id="home" class="home" hidden>
+      <div class="glow g1"></div>
+      <div class="glow g2"></div>
+      <div class="glow g3"></div>
 
-  <!-- ===== БОЛО: ном ва тугмаҳои асосӣ ===== -->
-  <header class="top">
-    <div class="brand">Сайтсоз<span>.</span></div>
-    <div class="top-actions">
-      <button class="btn ghost" id="btnFull" type="button">Намоиш дар экрани пурра</button>
-      <button class="btn primary" id="btnDownload" type="button">Зеркашии сайт ↓</button>
+      <nav class="hnav">
+        <div class="logo">Sarmoya <b>Create</b></div>
+        <a href="#projSec" class="nlink" id="navProjects">Лоиҳаҳои ман</a>
+      </nav>
+
+      <section class="hhero">
+        <span class="pill">✨ Сайт дар 5 дақиқа</span>
+        <h1>Сайти зебо месозем.<br /><em>Ба интернет мебарем.</em></h1>
+        <p>
+          Шаблонро интихоб кунед, матнро иваз кунед ва бо як тугма нашр кунед.
+          Бе файл, бе барнома.
+        </p>
+
+        <!-- Оғози зуд: ном + намуд + сохтан -->
+        <form class="prompt" id="startForm" autocomplete="off">
+          <input
+            type="text"
+            id="startName"
+            placeholder="Номи бизнес... масалан: Торт 555"
+            maxlength="60"
+          />
+          <div class="types" id="startTypes"></div>
+          <button class="go" type="submit">Сохтан →</button>
+        </form>
+      </section>
+
+      <section class="tpls">
+        <h2>Шаблонҳо</h2>
+        <p class="sub">
+          Яке интихоб кунед. Баъд ҳама чизро иваз кардан мумкин аст.
+        </p>
+        <div class="tgrid" id="tplGrid"></div>
+      </section>
+
+      <section class="projs" id="projSec" hidden>
+        <h2>Лоиҳаҳои ман</h2>
+        <div class="pgrid" id="projGrid"></div>
+      </section>
+
+      <footer class="hfoot">© 2026 Sarmoya Create</footer>
     </div>
-  </header>
 
-  <!-- ===== ВАРАҚАҲО (танҳо дар телефон): Маълумот | Намоиш ===== -->
-  <div class="tabs" id="tabs">
-    <button class="on" data-tab="form" type="button">1. Маълумот</button>
-    <button data-tab="view" type="button">2. Намоиш</button>
-  </div>
-
-  <main class="layout">
-
-    <!-- ===================== ФОРМА (чап) ===================== -->
-    <section class="panel" id="panelForm">
-      <p class="intro">Қадамҳоро аз боло ба поён пур кунед. Сайт дар тарафи рост худаш месозад. Дар охир «Зеркашии сайт»-ро пахш кунед.</p>
-
-      <!-- 1. НАМУДИ БИЗНЕС -->
-      <section class="step">
-        <h2><i>1</i>Намуди бизнес</h2>
-        <p class="hint">Намуд интихоб кунед, ва матнҳои намунавӣ пур мешаванд. Баъд онҳоро иваз мекунед.</p>
-        <div class="types" id="types"></div>
-      </section>
-
-      <!-- 2. МАЪЛУМОТИ АСОСӢ -->
-      <section class="step">
-        <h2><i>2</i>Маълумоти асосӣ</h2>
-        <label class="f"><span>Номи бизнес</span><input type="text" data-k="name" placeholder="Масалан: Торт 555"></label>
-        <label class="f"><span>Сарлавҳаи асосӣ (калон)</span><input type="text" data-k="headline"></label>
-        <label class="f"><span>Тавсифи кӯтоҳ (зери сарлавҳа)</span><textarea data-k="sub" rows="2"></textarea></label>
-        <label class="f"><span>Матни тугмаи асосӣ</span><input type="text" data-k="cta" placeholder="Масалан: Фармоиш додан"></label>
-        <label class="f"><span>Дар бораи мо</span><textarea data-k="about" rows="3"></textarea></label>
-        <label class="f"><span>Хат болои сарлавҳа (ихтиёрӣ)</span><input type="text" data-k="eyebrow" placeholder="Масалан: Тортҳои фармоишӣ · Душанбе"></label>
-      </section>
-
-      <!-- 3. ТАМОС -->
-      <section class="step">
-        <h2><i>3</i>Тамос</h2>
-        <label class="f"><span>Телефон</span><input type="tel" data-k="phone" placeholder="000 00 00 00"></label>
-        <label class="f"><span>WhatsApp (рақам, ихтиёрӣ)</span><input type="tel" data-k="whatsapp" placeholder="Агар аз телефон фарқ кунад"></label>
-        <label class="f"><span>Telegram (username, ихтиёрӣ)</span><input type="text" data-k="telegram" placeholder="@username"></label>
-        <label class="f"><span>Instagram (username, ихтиёрӣ)</span><input type="text" data-k="instagram" placeholder="@username"></label>
-        <label class="f"><span>Суроға</span><input type="text" data-k="address" placeholder="Душанбе, кӯчаи ..."></label>
-        <label class="f"><span>Линки харита (Google Maps, ихтиёрӣ)</span><input type="text" data-k="maps" placeholder="https://maps.google.com/..."></label>
-        <label class="f"><span>Вақти кор</span><input type="text" data-k="hours" placeholder="Ҳар рӯз 09:00 то 19:00"></label>
-      </section>
-
-      <!-- 4. ХИЗМАТҲО -->
-      <section class="step">
-        <h2><i>4</i>Хизматҳо ва нарх</h2>
-        <p class="hint">Нархро ба ҳамон шакл нависед, ки мехоҳед намоён бошад (масалан «аз 100 сомонӣ» ё «бо занг»).</p>
-        <div id="rep-services"></div>
-        <button class="btn add" id="add-services" type="button">+ Хизмат илова кардан</button>
-      </section>
-
-      <!-- 5. АКСҲО -->
-      <section class="step">
-        <h2><i>5</i>Аксҳо</h2>
-        <p class="hint">Аксҳо худкор хурд карда мешаванд. Акс набошад ҳам, сайт зебо мемонад.</p>
-        <div class="slots">
-          <div class="slot" id="slot-hero"></div>
-          <div class="slot" id="slot-about"></div>
-        </div>
-        <span class="lbl">Галерея (то 6 акс)</span>
-        <div class="gal-edit" id="galEdit"></div>
-        <input type="file" id="galInput" accept="image/*" multiple hidden>
-        <button class="btn add" id="galAdd" type="button">+ Акс илова кардан</button>
-      </section>
-
-      <!-- 6. НАМУД -->
-      <section class="step">
-        <h2><i>6</i>Намуд ва ранг</h2>
-        <span class="lbl">Мавзӯъ</span>
-        <div class="themes" id="themes"></div>
-        <div class="row">
-          <label class="f"><span>Ранги асосӣ (ихтиёрӣ)</span><input type="color" data-k="accent"></label>
-          <button class="btn ghost small" id="accentReset" type="button">Ранги мавзӯъ</button>
-        </div>
-        <span class="lbl">Шрифт</span>
-        <div class="chips" id="fonts"></div>
-      </section>
-
-      <!-- 7. ИЛОВАҲО -->
-      <section class="step">
-        <h2><i>7</i>Қисмҳои иловагӣ</h2>
-        <p class="hint">Қисмҳои лозимро фаъол кунед. Қисми холӣ дар сайт пайдо намешавад.</p>
-        <label class="chk"><input type="checkbox" data-k="show.advantages"><span>Афзалиятҳо (3 корт)</span></label>
-        <label class="chk"><input type="checkbox" data-k="show.gallery"><span>Галерея</span></label>
-        <label class="chk"><input type="checkbox" data-k="show.reviews"><span>Шарҳҳо</span></label>
-        <label class="chk"><input type="checkbox" data-k="show.faq"><span>Саволҳои маъмул</span></label>
-        <label class="chk"><input type="checkbox" data-k="show.form"><span>Форма барои дархост</span></label>
-        <label class="chk"><input type="checkbox" data-k="show.float"><span>Тугмаҳои шинокунанда (занг, WhatsApp, Telegram)</span></label>
-
-        <details class="more"><summary>Афзалиятҳоро таҳрир кардан</summary>
-          <div id="rep-advantages"></div>
-          <button class="btn add" id="add-advantages" type="button">+ Афзалият илова кардан</button>
-        </details>
-        <details class="more"><summary>Шарҳҳоро таҳрир кардан</summary>
-          <p class="hint warn">Танҳо шарҳҳои воқеӣ ва бо розигии мизоҷ гузоред. Шарҳи сохта мизоҷро фиреб медиҳад ва эътимодро мебарад.</p>
-          <div id="rep-reviews"></div>
-          <button class="btn add" id="add-reviews" type="button">+ Шарҳ илова кардан</button>
-        </details>
-        <details class="more"><summary>Саволҳоро таҳрир кардан</summary>
-          <div id="rep-faq"></div>
-          <button class="btn add" id="add-faq" type="button">+ Савол илова кардан</button>
-        </details>
-      </section>
-
-      <!-- 8. НАШР -->
-      <section class="step">
-        <h2><i>8</i>Нашр дар интернет</h2>
-        <ol class="how">
-          <li>Тугмаи <b>«Зеркашии сайт»</b>-ро пахш кунед: файли <code>index.html</code> зеркашӣ мешавад.</li>
-          <li>Папкаи нав созед (масалан <code>torti-555</code>) ва файлро ба он гузоред.</li>
-          <li>Ба <b>app.netlify.com/drop</b> равед ва папкаро кашида гузоред.</li>
-          <li>Линк пайдо мешавад. Номи линкро дар Netlify ислоҳ кунед (<code>Project configuration → Change project name</code>).</li>
-        </ol>
-        <p class="hint">Дархостҳои форма дар Netlify, дар қисми <b>Forms</b> меоянд.</p>
-
-        <span class="lbl">Лоиҳаи худро нигоҳ доред</span>
-        <div class="row wrap">
-          <button class="btn ghost small" id="btnSave" type="button">Захира (файл)</button>
-          <button class="btn ghost small" id="btnLoad" type="button">Боз кардан</button>
-          <button class="btn ghost small danger" id="btnReset" type="button">Аз нав оғоз кардан</button>
-          <input type="file" id="loadInput" accept=".json,application/json" hidden>
-        </div>
-        <p class="hint">Тағйиротҳо дар браузер худкор захира мешаванд. Барои мизоҷи дигар «Захира»-ро пахш кунед ва баъд «Аз нав».</p>
-      </section>
-    </section>
-
-    <!-- ===================== НАМОИШ (рост) ===================== -->
-    <aside class="view" id="panelView">
-      <div class="view-bar">
-        <span class="lbl-top">Намоиш</span>
+    <!-- =====================================================
+       ТАҲРИРГАР: чап = маълумот, рост = iPhone 16 Pro Max
+       ===================================================== -->
+    <div id="editor" class="editor" hidden>
+      <header class="etop">
+        <button
+          class="icon-btn"
+          id="btnBack"
+          type="button"
+          title="Ба саҳифаи асосӣ"
+        >
+          ←
+        </button>
+        <div class="ptitle" id="projTitle">Лоиҳа</div>
+        <span class="save" id="saveState">Захира шуд</span>
         <div class="seg" id="seg">
           <button class="on" data-dev="phone" type="button">Телефон</button>
-          <button data-dev="desktop" type="button">Компютер</button>
+          <button data-dev="desk" type="button">Компютер</button>
         </div>
-      </div>
-      <div class="stage">
-        <div class="frame phone" id="frame">
-          <iframe id="preview" title="Намоиши сайт"></iframe>
-        </div>
-      </div>
-    </aside>
-  </main>
+        <button class="deploy" id="btnDeploy" type="button">🚀 Деплой</button>
+      </header>
 
-  <div class="toast" id="toast"></div>
+      <!-- Варақаҳо (танҳо дар телефон) -->
+      <div class="tabs" id="tabs">
+        <button class="on" data-tab="form" type="button">Таҳрир</button>
+        <button data-tab="view" type="button">Намоиш</button>
+      </div>
 
-  <script src="generator.js"></script>
-  <script src="app.js"></script>
-</body>
+      <div class="elayout" id="elayout">
+        <!-- ===== ПАНЕЛИ ТАҲРИР ===== -->
+        <aside class="side" id="side">
+          <details class="acc" open>
+            <summary><i>1</i>Асосӣ</summary>
+            <div class="accb">
+              <span class="lbl">Намуди бизнес</span>
+              <div class="chips" id="types"></div>
+              <label class="f"
+                ><span>Номи бизнес</span
+                ><input
+                  type="text"
+                  data-k="name"
+                  placeholder="Масалан: Торт 555"
+              /></label>
+              <label class="f"
+                ><span>Сарлавҳаи калон</span
+                ><input type="text" data-k="headline"
+              /></label>
+              <label class="f"
+                ><span>Тавсифи кӯтоҳ</span
+                ><textarea data-k="sub" rows="2"></textarea>
+              </label>
+              <label class="f"
+                ><span>Матни тугмаи асосӣ</span
+                ><input
+                  type="text"
+                  data-k="cta"
+                  placeholder="Масалан: Фармоиш додан"
+              /></label>
+              <label class="f"
+                ><span>Дар бораи мо</span
+                ><textarea data-k="about" rows="3"></textarea>
+              </label>
+              <label class="f"
+                ><span>Хат болои сарлавҳа</span
+                ><input
+                  type="text"
+                  data-k="eyebrow"
+                  placeholder="Масалан: Тортҳои фармоишӣ · Душанбе"
+              /></label>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary><i>2</i>Тамос</summary>
+            <div class="accb">
+              <label class="f"
+                ><span>Телефон</span
+                ><input type="tel" data-k="phone" placeholder="000 00 00 00"
+              /></label>
+              <label class="f"
+                ><span>WhatsApp (агар аз телефон фарқ кунад)</span
+                ><input type="tel" data-k="whatsapp"
+              /></label>
+              <label class="f"
+                ><span>Telegram (username)</span
+                ><input type="text" data-k="telegram" placeholder="@username"
+              /></label>
+              <label class="f"
+                ><span>Instagram (username)</span
+                ><input type="text" data-k="instagram" placeholder="@username"
+              /></label>
+              <label class="f"
+                ><span>Суроға</span
+                ><input
+                  type="text"
+                  data-k="address"
+                  placeholder="Душанбе, кӯчаи ..."
+              /></label>
+              <label class="f"
+                ><span>Линки харита (Google Maps)</span
+                ><input
+                  type="text"
+                  data-k="maps"
+                  placeholder="https://maps.google.com/..."
+              /></label>
+              <label class="f"
+                ><span>Вақти кор</span
+                ><input
+                  type="text"
+                  data-k="hours"
+                  placeholder="Ҳар рӯз 09:00 то 19:00"
+              /></label>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary><i>3</i>Хизматҳо ва нарх</summary>
+            <div class="accb">
+              <p class="hint">
+                Нархро ба шакле нависед, ки мехоҳед намоён бошад (масалан «аз
+                100 сомонӣ» ё «бо занг»).
+              </p>
+              <div id="rep-services"></div>
+              <button class="add" id="add-services" type="button">
+                + Хизмат илова кардан
+              </button>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary><i>4</i>Аксҳо</summary>
+            <div class="accb">
+              <p class="hint">
+                Аксҳо худкор хурд карда мешаванд. Акс набошад ҳам, сайт зебо
+                мемонад.
+              </p>
+              <div class="slots">
+                <div class="slot" id="slot-hero"></div>
+                <div class="slot" id="slot-about"></div>
+              </div>
+              <span class="lbl">Галерея (то 6 акс)</span>
+              <div class="gal-edit" id="galEdit"></div>
+              <input
+                type="file"
+                id="galInput"
+                accept="image/*"
+                multiple
+                hidden
+              />
+              <button class="add" id="galAdd" type="button">
+                + Акс илова кардан
+              </button>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary><i>5</i>Дизайн</summary>
+            <div class="accb">
+              <span class="lbl">Шакли саҳифаи аввал</span>
+              <div class="chips" id="layouts"></div>
+              <span class="lbl">Мавзӯъ</span>
+              <div class="themes" id="themes"></div>
+              <div class="row">
+                <label class="f"
+                  ><span>Ранги асосӣ (ихтиёрӣ)</span
+                  ><input type="color" data-k="accent"
+                /></label>
+                <button class="ghost small" id="accentReset" type="button">
+                  Ранги мавзӯъ
+                </button>
+              </div>
+              <span class="lbl">Шрифт</span>
+              <div class="chips" id="fonts"></div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary><i>6</i>Қисмҳои иловагӣ</summary>
+            <div class="accb">
+              <p class="hint">Қисми холӣ дар сайт пайдо намешавад.</p>
+              <label class="chk"
+                ><input type="checkbox" data-k="show.marquee" /><span
+                  >Навори ҳаракаткунанда</span
+                ></label
+              >
+              <label class="chk"
+                ><input type="checkbox" data-k="show.stats" /><span
+                  >Рақамҳо</span
+                ></label
+              >
+              <label class="chk"
+                ><input type="checkbox" data-k="show.advantages" /><span
+                  >Афзалиятҳо</span
+                ></label
+              >
+              <label class="chk"
+                ><input type="checkbox" data-k="show.gallery" /><span
+                  >Галерея</span
+                ></label
+              >
+              <label class="chk"
+                ><input type="checkbox" data-k="show.reviews" /><span
+                  >Шарҳҳо</span
+                ></label
+              >
+              <label class="chk"
+                ><input type="checkbox" data-k="show.faq" /><span
+                  >Саволҳои маъмул</span
+                ></label
+              >
+              <label class="chk"
+                ><input type="checkbox" data-k="show.form" /><span
+                  >Форма барои дархост</span
+                ></label
+              >
+              <label class="chk"
+                ><input type="checkbox" data-k="show.float" /><span
+                  >Тугмаҳои шинокунанда</span
+                ></label
+              >
+
+              <details class="more">
+                <summary>Рақамҳо (танҳо воқеӣ!)</summary>
+                <p class="hint warn">
+                  Танҳо рақамҳои дурустро нависед, масалан «5+» ва «сол
+                  таҷриба».
+                </p>
+                <div id="rep-stats"></div>
+                <button class="add" id="add-stats" type="button">
+                  + Рақам илова кардан
+                </button>
+              </details>
+              <details class="more">
+                <summary>Афзалиятҳо</summary>
+                <div id="rep-advantages"></div>
+                <button class="add" id="add-advantages" type="button">
+                  + Афзалият илова кардан
+                </button>
+              </details>
+              <details class="more">
+                <summary>Шарҳҳо</summary>
+                <p class="hint warn">
+                  Танҳо шарҳҳои воқеӣ ва бо розигии мизоҷ. Шарҳи сохта мизоҷро
+                  фиреб медиҳад.
+                </p>
+                <div id="rep-reviews"></div>
+                <button class="add" id="add-reviews" type="button">
+                  + Шарҳ илова кардан
+                </button>
+              </details>
+              <details class="more">
+                <summary>Саволҳо</summary>
+                <div id="rep-faq"></div>
+                <button class="add" id="add-faq" type="button">
+                  + Савол илова кардан
+                </button>
+              </details>
+            </div>
+          </details>
+
+          <p class="side-foot">
+            Ҳама тағйирот худкор захира мешавад. Ҳамаро тайёр кардед?
+            <b>Деплой</b>-ро пахш кунед.
+          </p>
+        </aside>
+
+        <!-- ===== НАМОИШ: iPhone 16 Pro Max ===== -->
+        <section class="stage" id="stage">
+          <div class="device-wrap" id="deviceWrap">
+            <div class="device" id="device">
+              <i class="sb sb-action"></i><i class="sb sb-v1"></i
+              ><i class="sb sb-v2"></i><i class="sb sb-power"></i
+              ><i class="sb sb-cam"></i>
+              <div class="bezel">
+                <div class="screen" id="screen">
+                  <!-- Сатри браузер (танҳо дар ҳолати «Компютер») -->
+                  <div class="chrome">
+                    <span class="d"></span><span class="d"></span
+                    ><span class="d"></span>
+                    <div class="url" id="chromeUrl">sayt.netlify.app</div>
+                  </div>
+                  <!-- Ҷазираи динамикӣ ва сатри ҳолат (танҳо дар ҳолати «Телефон») -->
+                  <div class="island"></div>
+                  <div class="status">
+                    <span class="time">9:41</span>
+                    <span class="ics">
+                      <svg viewBox="0 0 18 12" width="18" height="12">
+                        <rect x="0" y="8" width="3" height="4" rx="1" />
+                        <rect x="5" y="5.5" width="3" height="6.5" rx="1" />
+                        <rect x="10" y="3" width="3" height="9" rx="1" />
+                        <rect x="15" y="0" width="3" height="12" rx="1" />
+                      </svg>
+                      <svg viewBox="0 0 17 12" width="17" height="12">
+                        <path
+                          d="M8.5 2.2c2.3 0 4.4.9 6 2.4l1-1.1A10.4 10.4 0 0 0 8.5.7 10.4 10.4 0 0 0 1.5 3.5l1 1.1a8.9 8.9 0 0 1 6-2.4zm0 3.6c1.4 0 2.6.5 3.600 1.400l1-1.100a7.200 7.200 0 0 0-9.200 0l1 1.100c1-.9 2.200-1.400 3.600-1.400zM8.500 9.400l1.800 1.900-1.800 1.700-1.800-1.700z"
+                        />
+                      </svg>
+                      <svg viewBox="0 0 28 13" width="28" height="13">
+                        <rect
+                          x=".5"
+                          y=".5"
+                          width="23"
+                          height="12"
+                          rx="3.500"
+                          fill="none"
+                          stroke="currentColor"
+                          opacity=".4"
+                        />
+                        <rect x="2" y="2" width="20" height="9" rx="2.200" />
+                        <rect
+                          x="25"
+                          y="4.500"
+                          width="2"
+                          height="4"
+                          rx="1"
+                          opacity=".5"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                  <iframe id="preview" title="Намоиши сайт"></iframe>
+                  <div class="homebar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- =====================================================
+       ТИРЕЗАИ ДЕПЛОЙ (мундариҷа аз app.js пур мешавад)
+       ===================================================== -->
+    <div class="modal" id="modal" hidden>
+      <div class="mbox" id="modalBox"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="generator.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>

@@ -1,0 +1,10 @@
+# ===== ТАНЗИМОТИ NETLIFY =====
+# Барои чӣ: сайт аз папкаи асосӣ нашр мешавад, функсияҳо аз netlify/functions
+[build]
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[functions]
+  directory = "netlify/functions"
